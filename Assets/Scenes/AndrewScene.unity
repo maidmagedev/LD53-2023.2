@@ -360,6 +360,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &485808397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8360505634842503321, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+  m_PrefabInstance: {fileID: 863561114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &563369755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8360505634842503327, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
@@ -792,6 +797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997807789}
+  - component: {fileID: 997807790}
   m_Layer: 0
   m_Name: Player Controllable Actors
   m_TagString: Untagged
@@ -816,6 +822,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997807790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997807788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8791c0a312539c94b9c5293b982f026e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followCam: {fileID: 1952132777}
+  fridge: {fileID: 485808397}
+  drone: {fileID: 1890713307}
+  activeActor: {fileID: 0}
 --- !u!1 &1520929297
 GameObject:
   m_ObjectHideFlags: 0
