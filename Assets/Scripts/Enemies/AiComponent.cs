@@ -19,11 +19,11 @@ public class AiComponent : MonoBehaviour
         agent.updateRotation = false;
         //enemy_shoot = GetComponentInChildren<EnemyShoot>();
 
-        // target choosing logic
-        GameObject[] machines = GameObject.FindGameObjectsWithTag("Machine");  // finds all machines that exist when the enemy is spawned
+       
         target = GameObject.FindWithTag("Player"); 
-        possible_targets.AddRange(machines);
-        possible_targets.Add(target);
+        print(target);
+        //possible_targets.AddRange(machines);
+        //possible_targets.Add(target);
     }
 
     // Update is called once per frame

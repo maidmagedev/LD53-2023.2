@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 
 
 // 1. Make sure you have this package installed: https://github.com/h8man/NavMeshPlus.git
@@ -23,7 +24,7 @@ public class BasicGuard : MonoBehaviour, IKillable
 
     [Header("Components")]
     [SerializeField] private NavMeshAgent navMeshobj;
-    [SerializeField] private GameObject damageLight;
+    [SerializeField] private Light2D damageLight;
     [SerializeField] private float spriteScale = 1f;
 
     DamageableComponent damageableComponent;
@@ -100,9 +101,9 @@ public class BasicGuard : MonoBehaviour, IKillable
 
     IEnumerator DamageLightToggle()
     {
-        damageLight.SetActive(true);
+        damageLight.enabled = true;
         yield return new WaitForSeconds(.5f);
-        damageLight.SetActive(false);
+        damageLight.enabled = false;
     }
 
     IEnumerator AttackCooldown()
