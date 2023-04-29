@@ -12,12 +12,12 @@ using UnityEngine.AI;
 // 6. Agent: Requires a navmesh agent component and the "AI Component" Script. X rotation: -90
 // 7. EnemyType: Sprite Renderer and TestEnemy.cs or similar. X rotation: 90
 
-public class TongueEnemy : MonoBehaviour, IKillable
+public class BasicGuard : MonoBehaviour, IKillable
 {
     [Header("Stats")]
-    [SerializeField] int damagePerHit = 10; // Note that the damage per hit doesn't reflect the tongue attack which happens on a separate collider.
+    [SerializeField] int damagePerHit = 10; 
     
-    [SerializeField] private int maxHealth = 400;
+    [SerializeField] private int maxHealth = 100;
     [SerializeField] private float attackCooldown = 1f;
 
 
@@ -49,15 +49,15 @@ public class TongueEnemy : MonoBehaviour, IKillable
         //print(navMeshobj.remainingDistance);
         //print(mayAttack);
         FlipSprite();
-        if (navMeshobj.remainingDistance <= 3  && navMeshobj.remainingDistance > 0 && mayAttack)
+        /*if (navMeshobj.remainingDistance <= 3  && navMeshobj.remainingDistance > 0 && mayAttack)
         {
             //Debug.Log("IN ATTACK RANGE");
             //print("attacking");
-            GetComponent<TongueAnimations>().SetAttackAnimationState(true);
+            //GetComponent<TongueAnimations>().SetAttackAnimationState(true);
             mayAttack = false;
             StartCoroutine(AttackCooldown());
             
-        }
+        }*/
     }
 
     private void FlipSprite()
@@ -108,7 +108,7 @@ public class TongueEnemy : MonoBehaviour, IKillable
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(2.75f);
-        GetComponent<TongueAnimations>().SetAttackAnimationState(false);
+        //GetComponent<TongueAnimations>().SetAttackAnimationState(false);
         yield return new WaitForSeconds(attackCooldown);
         mayAttack = true;
         //print(mayAttack);
