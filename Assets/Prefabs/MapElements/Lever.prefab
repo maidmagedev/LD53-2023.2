@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   root: {fileID: 6346599360155772580}
   bounds: {fileID: 6346599361387351562}
-  desiredHoldArea: {x: 0, y: -0.85, z: 0}
+  desiredHoldArea: {x: 0, y: 0, z: 0}
 --- !u!1 &6346599360589447635
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 6346599360589447632}
   - component: {fileID: 6346599360589447633}
   - component: {fileID: 6346599360589447634}
+  - component: {fileID: 1598278136}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -257,7 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afede9d8d815a9b4496f1563885d0003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabledPosition: 0
+  isPowered: 0
+  enabledPosition: 2
   neutralEnabled: 0
   Drone: {fileID: 6346599360155772580}
   main: {fileID: 6346599361207801269}
@@ -293,6 +295,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8042706, y: 0.39848948}
   m_EdgeRadius: 0
+--- !u!114 &1598278136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346599360589447635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5246cbba7cd4f4a820089d1bd2ec53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  stateWhenPowered: 1
 --- !u!1 &6346599360806272395
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +522,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015957355, y: -0.22750735}
+  m_Offset: {x: -0.015957575, y: -0.74953294}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -517,5 +533,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.49998, y: 1.3017287}
+  m_Size: {x: 0.08575969, y: 0.25767756}
   m_EdgeRadius: 0

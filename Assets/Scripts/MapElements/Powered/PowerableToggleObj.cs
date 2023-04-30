@@ -10,7 +10,6 @@ public class PowerableToggleObj : MonoBehaviour, PowerableElement
     
     void PowerableElement.StartPowered()
     {
-        Debug.Log("ToggleObj");
         obj.SetActive(stateWhenPowered);
     }
 

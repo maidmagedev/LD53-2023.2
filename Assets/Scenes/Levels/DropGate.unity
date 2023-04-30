@@ -1025,25 +1025,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pExp: {fileID: 241555512}
---- !u!1 &1598278132 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6346599360589447635, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
-  m_PrefabInstance: {fileID: 6346599362086570023}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1598278136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598278132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b5246cbba7cd4f4a820089d1bd2ec53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 7150354788211185052}
-  stateWhenPowered: 1
 --- !u!1 &1845544988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,7 +4630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8577735219068752089, guid: c247835a159436c4d865ecd0e6977e31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.57
+      value: 6.85
       objectReference: {fileID: 0}
     - target: {fileID: 8577735219068752089, guid: c247835a159436c4d865ecd0e6977e31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5227,6 +5208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1598278136, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
+      propertyPath: obj
+      value: 
+      objectReference: {fileID: 7150354788211185052}
     - target: {fileID: 6346599360589447632, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -5275,10 +5260,6 @@ PrefabInstance:
       propertyPath: grabber
       value: 
       objectReference: {fileID: 620470700}
-    - target: {fileID: 6346599360589447633, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
-      propertyPath: enabledPosition
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6346599360589447635, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
       propertyPath: m_Name
       value: Lever

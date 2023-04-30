@@ -51,6 +51,10 @@ public class Lever : PowerSource
         } else {
             pos = Position.center;
         }
+        if (!neutralEnabled && pos == Position.center) {
+            pos = Position.a;
+        }
+
         if (pos == enabledPosition) {
             isPowered = true;
             pElem.StartPowered();
