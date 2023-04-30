@@ -61,7 +61,7 @@ public class TriggerBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnEnter");
+        //Debug.Log("OnEnter");
         if (onlyTargetColWithTag && !collision.CompareTag(tagToTarget))
         {
             // targetting a specific target, this collider is not the target.
@@ -104,7 +104,7 @@ public class TriggerBase : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exit");
+        //Debug.Log("Exit");
         if (onlyTargetColWithTag && !collision.CompareTag(tagToTarget))
         {
             // targetting a specific target, this collider is not the target.

@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeightedButton : MonoBehaviour
+public class WeightedButton : PowerSource
 {
     public GameObject weight;
-    public bool powered;
+    public GameObject pElemSource; //Should have a pElem component.
+    public PowerableElement pElem;
+
+    void Start () {
+        pElem = pElemSource.GetComponentInChildren<PowerableElement>();
+        pElem.SetPowerSource(this);
+    }
 
     void OnCollisionEnter2D(Collision2D collision) {
 
@@ -14,14 +20,18 @@ public class WeightedButton : MonoBehaviour
 
         StopAllCoroutines();
         StartCoroutine(MovePlatform(transform.localPosition, new Vector3(0, -0.25f, 0)));
-        powered = true;
-
+        if (!isPowered) {
+            isPowered = true;
+            pElem.StartPowered();
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision) {
         StopCoroutine("Tether");
         StartCoroutine(Tether());
     }
+
+
 
     IEnumerator MovePlatform(Vector3 startPos, Vector3 endPos) {
         
@@ -57,9 +67,10 @@ public class WeightedButton : MonoBehaviour
 
             if (Vector3.Distance(weight.transform.position, this.transform.position) > maxDistance) {
                 weight = null;
-                powered = false;
+                isPowered = false;
                 StopCoroutine("MovePlatform");
                 StartCoroutine(MovePlatform(transform.localPosition, Vector3.zero));
+                pElem.EndPowered();
                 yield break;
             }
             yield return null;
