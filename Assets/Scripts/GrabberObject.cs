@@ -7,6 +7,7 @@ public class GrabberObject : MonoBehaviour
     public bool isGrabbing;
     public bool isReleaseReady;
 
+    public GameObject grabberObject;
     public Collider2D grabberCollider;
     public GameObject heldObject;
     public GameObject grabZone;
@@ -28,7 +29,10 @@ public class GrabberObject : MonoBehaviour
         {
             Debug.Log("released!");
             heldObject.transform.parent = playerControllableActors.transform;
-            heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
+            Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
+            heldObjRB.bodyType = RigidbodyType2D.Dynamic;
+            heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
             isGrabbing = false;
             isReleaseReady = false;
             //grabZone.GetComponent<GrabbableObject>().drop_me();
