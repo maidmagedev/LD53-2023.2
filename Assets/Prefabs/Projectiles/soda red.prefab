@@ -73,14 +73,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 20, y: 0, z: 0}
   spin: 55
-  doDamage: 0
-  damageAmount: 0
-  destroyOnImpact: 0
-  onlyTargetObjectsWithTag: 
+  doDamage: 1
+  damageAmount: 1
+  destroyOnImpact: 1
+  onlyTargetObjectsWithTag: Player
   target: {fileID: 0}
   lifeTime: 5
-  rb: {fileID: 867852482722642099}
-  projectileRoot: {fileID: 2794099099452711398}
+  rb: {fileID: 0}
+  projectileRoot: {fileID: 0}
   sender: {fileID: 0}
 --- !u!1 &2794099099452711398
 GameObject:
