@@ -19,8 +19,7 @@ public class WeightedButton : MonoBehaviour
     }
 
     void OnCollisionExit2D(Collision2D collision) {
-        StopAllCoroutines();
-        StartCoroutine(MovePlatform(transform.localPosition, Vector3.zero));
+        StopCoroutine("Tether");
         StartCoroutine(Tether());
     }
 
@@ -59,6 +58,8 @@ public class WeightedButton : MonoBehaviour
             if (Vector3.Distance(weight.transform.position, this.transform.position) > maxDistance) {
                 weight = null;
                 powered = false;
+                StopCoroutine("MovePlatform");
+                StartCoroutine(MovePlatform(transform.localPosition, Vector3.zero));
                 yield break;
             }
             yield return null;
