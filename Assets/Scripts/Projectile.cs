@@ -9,7 +9,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] int spin; // spin amount per frame.
     [SerializeField] bool doDamage;
     [SerializeField] int damageAmount;
-    [SerializeField] bool destroyOnImpact;
+    [SerializeField] bool destroyOnContact;
+    [SerializeField] bool destroyOnGround;
+    [SerializeField] bool ignorePlayer;
     [SerializeField] string onlyTargetObjectsWithTag; // if this is null, then
     [SerializeField] GameObject target;
     [SerializeField] float lifeTime = 20f; // lifetime in seconds.
@@ -29,14 +31,30 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate() {
         rb.rotation += spin;
+        // this below bit happens once even though it's in update.
         if (!thrown && sender != null) {
             //rb.AddForce(sender.transform.forward * 400f);
-            rb.velocity = new Vector3(velocity.x * sender.transform.localScale.x, velocity.y, velocity.z);
+            rb.velocity = new Vector3(velocity.x * sender.transform.localScale.x, velocity.y + 10f, velocity.z);
+            
             thrown = true;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (destroyOnGround) {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+                StopAllCoroutines();
+                StartCoroutine(ShrinkDeath());
+            }
+        }
+
+        if (ignorePlayer) {
+            // unless fridge
+            if (other.gameObject.name.CompareTo("Fridge") == 0) {
+                return;
+            }
+        }
+
         // If this string is not null, check if this object is NOT the collider we want.
         if (onlyTargetObjectsWithTag.CompareTo("") != 0) { 
             // Since this is not the collider we want, return out of this function.
@@ -54,7 +72,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if (destroyOnImpact) {
+        if (destroyOnContact) {
             StopAllCoroutines();
             StartCoroutine(ShrinkDeath());
             //Destroy(projectileRoot);
