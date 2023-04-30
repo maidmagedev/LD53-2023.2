@@ -36,6 +36,8 @@ public class GrabberObject : MonoBehaviour
             Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
             Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
             heldObjRB.bodyType = RigidbodyType2D.Dynamic;
+            heldObjRB.simulated = true;
+            
             heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
             isGrabbing = false;
             isReleaseReady = false;
@@ -59,9 +61,13 @@ public class GrabberObject : MonoBehaviour
             grabZone = other.gameObject;
             heldObject = other.gameObject.GetComponent<GrabbableObject>().root;
             //other.GetComponent<GrabbableObject>().grab_me(holdArea);
+
+            holdArea.localPosition = other.gameObject.GetComponent<GrabbableObject>().desiredHoldArea;
+
             heldObject.transform.parent = transform;
             heldObject.transform.localPosition = holdArea.localPosition;
             heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            heldObject.GetComponent<Rigidbody2D>().simulated = false;
 
             // copy data of held object collider to grabber collider
             BoxCollider2D grabbedObjectBounds = grabZone.GetComponent<GrabbableObject>().bounds;
