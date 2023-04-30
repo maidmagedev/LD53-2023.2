@@ -6,6 +6,8 @@ public class GrabberObject : MonoBehaviour
     [SerializeField] private KeyCode toggleGrabKey;
     public bool isGrabbing;
     public bool isReleaseReady;
+
+    public Collider2D grabberCollider;
     public GameObject heldObject;
     public GameObject grabZone;
     public Transform holdArea;
@@ -30,6 +32,9 @@ public class GrabberObject : MonoBehaviour
             isGrabbing = false;
             isReleaseReady = false;
             //grabZone.GetComponent<GrabbableObject>().drop_me();
+
+            Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), false);
+            Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
         }
     }
 
@@ -44,7 +49,10 @@ public class GrabberObject : MonoBehaviour
             heldObject.transform.parent = transform;
             heldObject.transform.localPosition = holdArea.localPosition;
             heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            
+
+            Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<Collider2D>(), true);
+            Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), true);
+
             isGrabbing = true;
             StartCoroutine(DelayCoroutine(0.1f));
         }

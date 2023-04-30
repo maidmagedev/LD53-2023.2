@@ -301,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325624696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.06, z: 0}
+  m_LocalPosition: {x: 0, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536481440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.162, y: -1.805, z: 0}
+  m_LocalPosition: {x: 0.06, y: -1.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -825,6 +825,38 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -0.6841335
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.99680233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -0.68832016
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: -0.5557928
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 0.56367016
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: -0.55588436
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 0.5612278
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 1.0018537
+      objectReference: {fileID: 0}
     - target: {fileID: 8360505634842503325, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -947,7 +979,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.034649372, y: 0.86121225}
@@ -1039,7 +1071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463362546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.011, y: 0, z: 0}
+  m_LocalPosition: {x: -0.011, y: -0.07, z: 0}
   m_LocalScale: {x: 0.89393, y: 0.804537, z: 0.89393}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1061,7 +1093,9 @@ MonoBehaviour:
   toggleGrabKey: 0
   isGrabbing: 0
   isReleaseReady: 0
+  grabberCollider: {fileID: 1890713313}
   heldObject: {fileID: 0}
+  grabZone: {fileID: 0}
   holdArea: {fileID: 536481441}
   playerControllableActors: {fileID: 997807788}
 --- !u!61 &1463362549
