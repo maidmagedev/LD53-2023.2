@@ -10,6 +10,9 @@ public interface PowerableElement {
 
 public class PowerSource : MonoBehaviour
 {
+    [Header("PowerSource Variables")]
     public bool isPowered;
+
+    public List<PowerableElement> powerableElements;
 
 }

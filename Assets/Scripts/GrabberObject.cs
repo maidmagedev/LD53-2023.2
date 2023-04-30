@@ -88,6 +88,8 @@ public class GrabberObject : MonoBehaviour
         //heldObject.transform.parent = playerControllableActors.transform;
         heldObject.transform.parent = heldObject.GetComponentInChildren<GrabbableObject>().originalParent;
         
+        heldObject.GetComponentInParent<Lever>()?.Release(false);
+
         Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
         Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
         heldObjRB.bodyType = RigidbodyType2D.Dynamic;
@@ -96,7 +98,11 @@ public class GrabberObject : MonoBehaviour
         if (Mathf.Abs(grabberRB.velocity.x) > 8f) {
             //heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
             heldObjRB.AddForce(new Vector2(grabberRB.velocity.x, grabberRB.velocity.y), ForceMode2D.Impulse);
-            StartCoroutine(DisableSpeedLimitTemp(heldObjRB.GetComponentInChildren<RBSpeedLimiter>()));
+            RBSpeedLimiter rBSpeedLimiter = heldObjRB.GetComponentInChildren<RBSpeedLimiter>();
+            if (rBSpeedLimiter != null) {
+                StartCoroutine(DisableSpeedLimitTemp(rBSpeedLimiter));
+            }
+
         } else {
             heldObjRB.velocity = Vector3.zero;
         }

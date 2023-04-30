@@ -33,7 +33,6 @@ public class PowerableObjectSpawner : MonoBehaviour, PowerableElement
 
     void PowerableElement.StartPowered()
     {
-        Debug.Log("Hello!");
         if (waitingForCooldown) {
             return;
         }

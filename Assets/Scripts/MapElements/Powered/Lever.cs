@@ -8,7 +8,10 @@ public class Lever : PowerSource
     public Position pos; // current position, also starting position.
 
     [SerializeField] Position enabledPosition;
-    [SerializeField] bool neutralEnabled;
+    private Position offPosition;
+    [SerializeField] bool isBinary;
+    [SerializeField] bool activateOnce;
+    private bool neutralEnabled;
     [SerializeField] float angleZ_posA;
     [SerializeField] float angleZ_posB;
     [SerializeField] float angleZ_posCenter;
@@ -21,9 +24,9 @@ public class Lever : PowerSource
     [SerializeField] Settings settings;
     private Vector3 originalPos;
     private Quaternion originalRot;
-    public GameObject pElemSource; //Should have a pElem component.
+    //public GameObject pElemSource; //Should have a pElem component.
 
-    public PowerableElement pElem;
+    //public PowerableElement pElem;
 
 
     [Header("Misc")]
@@ -44,8 +47,21 @@ public class Lever : PowerSource
         if (settings == null) {
             settings = FindObjectOfType<Settings>();
         }
-        pElem = pElemSource.GetComponentInChildren<PowerableElement>();
-        pElem.SetPowerSource(this);
+        if (isBinary) {
+            neutralEnabled = false;
+            if (enabledPosition == Position.a) {
+                offPosition = Position.b;
+            } else if (enabledPosition == Position.b) {
+                offPosition = Position.a;
+            }
+        }
+
+        //pElem = pElemSource.GetComponentInChildren<PowerableElement>();
+        //pElem.SetPowerSource(this);
+
+        foreach (PowerableElement pE in powerableElements) {
+            pE.SetPowerSource(this);
+        }
 
         originalPos = grabbable.root.transform.position;
         originalRot = grabbable.root.transform.rotation;
@@ -72,7 +88,16 @@ public class Lever : PowerSource
 
         if (pos == enabledPosition) {
             isPowered = true;
-            pElem.StartPowered();
+            foreach (PowerableElement pElem in powerableElements) {
+                pElem.StartPowered();
+            }
+        } else {
+            if (isPowered) {
+                foreach (PowerableElement pElem in powerableElements) {
+                    pElem.EndPowered();
+                }
+                isPowered = false;
+            }
         }
 
         if (grabber.isGrabbing && grabber.heldObject == leverGrab) {
@@ -88,9 +113,10 @@ public class Lever : PowerSource
             // Set the rotation to face the target
             main.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            if (grabber.isReleaseReady && Input.GetKeyDown(settings.grabKey)) {
-                Release();
-            }
+            // if (grabber.isReleaseReady && Input.GetKey(settings.grabKey)) {
+            //     Debug.Log("Release wheel grabbing.");
+            //     Release();
+            // }
         
         } 
         
@@ -98,18 +124,22 @@ public class Lever : PowerSource
             Debug.Log("Forced Release");
             if (grabber.isReleaseReady) {
 
-                Release();
+                Release(true);
             }
         } 
         
     
     }
 
-    private void Release() {
-        grabber.Release();
-                grabbable.root.transform.SetParent(this.transform);
-                grabbable.root.transform.position = originalPos;
-                grabbable.root.transform.localRotation = Quaternion.Euler(Vector3.zero);
+    public void Release(bool fromInside) {
+
+        if (fromInside) {
+            grabber.Release();
+        }
+        grabbable.root.transform.SetParent(this.transform);
+        grabbable.root.transform.position = originalPos;
+        grabbable.root.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
         switch(pos) {
             case Position.a:
                 StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, angleZ_posA), 0.5f));
@@ -123,14 +153,16 @@ public class Lever : PowerSource
                 }
                 break;
         }
+        //Debug.Log("end of switch from release");
     }
 
     IEnumerator RotateToQuaternion(Transform transform, Vector3 targetRotation, float duration)
     {
+
         if (lerping) {
             yield break;
         }
-        // Debug.Log("Test");
+        //Debug.Log("Rotating");
         lerping = true;
         Quaternion targetQuaternion = Quaternion.Euler(targetRotation);
         Quaternion startRotation = transform.rotation;
