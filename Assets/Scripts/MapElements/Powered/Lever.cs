@@ -38,7 +38,7 @@ public class Lever : PowerSource
         if (grabber == null) {
             grabber = FindObjectOfType<GrabberObject>();
         }
-        pElem = GetComponentInParent<PowerableElement>();
+        pElem = GetComponent<PowerableElement>();
         pElem.SetPowerSource(this);
 
         originalPos = grabbable.root.transform.position;
