@@ -24,6 +24,7 @@ public class BasicGuard : MonoBehaviour, IKillable
 
     [Header("Components")]
     [SerializeField] private NavMeshAgent navMeshobj;
+    [SerializeField] private GameObject detectionCone;
     [SerializeField] private Light2D damageLight;
     [SerializeField] private float spriteScale = 1f;
 
@@ -66,10 +67,14 @@ public class BasicGuard : MonoBehaviour, IKillable
         if (navMeshobj.velocity.x < 0)
         {
             transform.localScale = new Vector2(spriteScale, gameObject.transform.localScale.y);
+            detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x)*-1,
+                detectionCone.transform.localScale.y);
         }
         else if (navMeshobj.velocity.x > 0)
         {
             transform.localScale = new Vector2(spriteScale*-1, gameObject.transform.localScale.y);
+            detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x),
+                detectionCone.transform.localScale.y);
         }
     }
 
