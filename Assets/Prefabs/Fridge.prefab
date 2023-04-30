@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   root: {fileID: 8360505634842503321}
   bounds: {fileID: 1936527736}
+  desiredHoldArea: {x: 0, y: 0, z: 0}
 --- !u!1 &1936527734
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,8 +386,10 @@ GameObject:
   - component: {fileID: 1343212329}
   - component: {fileID: 1343212335}
   - component: {fileID: 1343212336}
+  - component: {fileID: 975225128321566409}
+  - component: {fileID: 2909382753027580697}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Fridge
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,3 +552,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pExp: {fileID: 7076932464869686962}
   activeCharManager: {fileID: 0}
+--- !u!114 &975225128321566409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360505634842503321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baafa3030c6f982469dba98b159cca6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pExp: {fileID: 7076932464869686962}
+--- !u!114 &2909382753027580697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360505634842503321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baafa3030c6f982469dba98b159cca6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pExp: {fileID: 7076932464869686962}
