@@ -28,7 +28,7 @@ public class DamageableComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("takedamage:" + damage);
+        //Debug.Log("takedamage:" + damage);
         this.currentHealth -= damage;
         if(currentHealth <= 0 && !dead)
         {
