@@ -5,11 +5,16 @@ using UnityEngine;
 public class Lever : PowerSource
 {
     [Header("Settings")]
+    public Position pos; // current position, also starting position.
+
     [SerializeField] Position enabledPosition;
     [SerializeField] bool neutralEnabled;
+    [SerializeField] float angleZ_posA;
+    [SerializeField] float angleZ_posB;
+    [SerializeField] float angleZ_posCenter;
 
     [Header("references")]
-    [SerializeField] GameObject Drone;
+    [SerializeField] GameObject leverGrab;
     [SerializeField] GameObject main;
     [SerializeField] GrabberObject grabber;
     [SerializeField] GrabbableObject grabbable;
@@ -19,7 +24,6 @@ public class Lever : PowerSource
 
 
     [Header("Misc")]
-    public Position pos;
     public bool lerping = false;
     public enum Position {
         a, center, b
@@ -44,11 +48,16 @@ public class Lever : PowerSource
     // Update is called once per frame
     void Update()
     {
-        if (Drone.transform.position.x - main.transform.position.x > 0.45) {
+        if (leverGrab.transform.position.x - main.transform.position.x > 0.45) {
+            Debug.Log("B");
             pos = Position.b;
-        } else if (Drone.transform.position.x - main.transform.position.x < -0.45) {
+        } else if (leverGrab.transform.position.x - main.transform.position.x < -0.45) {
             pos = Position.a;
+            Debug.Log("A");
+
         } else {
+            Debug.Log("C");
+
             pos = Position.center;
         }
         if (!neutralEnabled && pos == Position.center) {
@@ -60,7 +69,7 @@ public class Lever : PowerSource
             pElem.StartPowered();
         }
 
-        if (grabber.isGrabbing) {
+        if (grabber.isGrabbing && grabber.heldObject == leverGrab) {
             // Get the direction to the target
             StopAllCoroutines();
             lerping = false;
@@ -79,7 +88,8 @@ public class Lever : PowerSource
         
         } 
         
-        if (Vector3.Distance(Drone.transform.position, main.transform.position) > 1.5) {
+        if (Mathf.Abs(leverGrab.transform.position.x - main.transform.position.x) > 3 || Mathf.Abs(leverGrab.transform.position.y - main.transform.position.y) > 3) {
+            Debug.Log("Forced Release");
             if (grabber.isReleaseReady) {
 
                 Release();
@@ -96,14 +106,14 @@ public class Lever : PowerSource
                 grabbable.root.transform.localRotation = Quaternion.Euler(Vector3.zero);
         switch(pos) {
             case Position.a:
-                StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, 60f), 0.5f));
+                StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, angleZ_posA), 0.5f));
                 break;
             case Position.b:
-                StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, 300f), 0.5f));
+                StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, angleZ_posB), 0.5f));
                 break;
             case Position.center:
                 if (neutralEnabled) {
-                    StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, 0f), 0.5f));
+                    StartCoroutine(RotateToQuaternion(main.transform, new Vector3(0, 0, angleZ_posCenter), 0.5f));
                 }
                 break;
         }
