@@ -7,6 +7,8 @@ public class Settings : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode interactKey = KeyCode.E;
+    public KeyCode grabKey = KeyCode.Space;
+
     // Start is called before the first frame update
     void Start()
     {

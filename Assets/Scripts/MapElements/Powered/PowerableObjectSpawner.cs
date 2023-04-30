@@ -43,7 +43,7 @@ public class PowerableObjectSpawner : MonoBehaviour, PowerableElement
         if (onlyActivateOnce && activatedOnce) {
             return;
         }
-        if (instantiatedObject != null) {
+        if (destroyOldInstantiated && instantiatedObject != null) {
             GameObject.Destroy(instantiatedObject);
         }
         instantiatedObject = Instantiate(pfSpawnObject, Vector3.zero, Quaternion.identity, spawnOrigin);

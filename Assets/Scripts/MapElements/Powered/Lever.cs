@@ -18,6 +18,7 @@ public class Lever : PowerSource
     [SerializeField] GameObject main;
     [SerializeField] GrabberObject grabber;
     [SerializeField] GrabbableObject grabbable;
+    [SerializeField] Settings settings;
     private Vector3 originalPos;
     private Quaternion originalRot;
     public GameObject pElemSource; //Should have a pElem component.
@@ -39,6 +40,9 @@ public class Lever : PowerSource
     {
         if (grabber == null) {
             grabber = FindObjectOfType<GrabberObject>();
+        }
+        if (settings == null) {
+            settings = FindObjectOfType<Settings>();
         }
         pElem = pElemSource.GetComponentInChildren<PowerableElement>();
         pElem.SetPowerSource(this);
@@ -84,7 +88,7 @@ public class Lever : PowerSource
             // Set the rotation to face the target
             main.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            if (grabber.isReleaseReady && Input.GetKeyDown(KeyCode.R)) {
+            if (grabber.isReleaseReady && Input.GetKeyDown(settings.grabKey)) {
                 Release();
             }
         

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class GrabberObject : MonoBehaviour
 {
-    [SerializeField] private KeyCode toggleGrabKey;
     public bool isGrabbing;
     public bool isReleaseReady;
 
@@ -17,9 +16,16 @@ public class GrabberObject : MonoBehaviour
     public GameObject playerControllableActors;
     public Transform holdArea;
 
+    [Header("Reference")]
+    [SerializeField] Settings settings;
+
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        if (settings == null) {
+            settings = FindObjectOfType<Settings>();
+        }
+
         isGrabbing = false;
         isReleaseReady = false;
         dummyGrabbedCollider.enabled = false;
@@ -30,7 +36,7 @@ public class GrabberObject : MonoBehaviour
     {   
 
 
-        if (isReleaseReady && Input.GetKeyDown(toggleGrabKey))
+        if (isReleaseReady && Input.GetKeyDown(settings.grabKey))
         {
             Release();
         }
@@ -38,7 +44,7 @@ public class GrabberObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!isGrabbing && other.gameObject.CompareTag("Grabbable") && Input.GetKeyDown(toggleGrabKey))
+        if (!isGrabbing && other.gameObject.CompareTag("Grabbable") && Input.GetKeyDown(settings.grabKey))
         {
             //Debug.Log("grabbed!");
             grabZone = other.gameObject;
@@ -79,7 +85,9 @@ public class GrabberObject : MonoBehaviour
 
     public void Release() {
         //Debug.Log("released!");
-        heldObject.transform.parent = playerControllableActors.transform;
+        //heldObject.transform.parent = playerControllableActors.transform;
+        heldObject.transform.parent = heldObject.GetComponentInChildren<GrabbableObject>().originalParent;
+        
         Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
         Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
         heldObjRB.bodyType = RigidbodyType2D.Dynamic;
