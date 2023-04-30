@@ -84,8 +84,11 @@ public class GrabberObject : MonoBehaviour
         Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
         heldObjRB.bodyType = RigidbodyType2D.Dynamic;
         heldObjRB.simulated = true;
+        
         if (Mathf.Abs(grabberRB.velocity.x) > 8f) {
-            heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
+            //heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
+            heldObjRB.AddForce(new Vector2(grabberRB.velocity.x, grabberRB.velocity.y), ForceMode2D.Impulse);
+            StartCoroutine(DisableSpeedLimitTemp(heldObjRB.GetComponentInChildren<RBSpeedLimiter>()));
         } else {
             heldObjRB.velocity = Vector3.zero;
         }
@@ -100,5 +103,12 @@ public class GrabberObject : MonoBehaviour
             Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
         if (heldObject.GetComponent<BoxCollider2D>() != null)
             Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<BoxCollider2D>(), false);
+    }
+
+    IEnumerator DisableSpeedLimitTemp(RBSpeedLimiter rBSpeedLimiter) {
+        rBSpeedLimiter.enabled = false;
+        yield return new WaitForSeconds(1f);
+        rBSpeedLimiter.enabled = true;
+
     }
 }
