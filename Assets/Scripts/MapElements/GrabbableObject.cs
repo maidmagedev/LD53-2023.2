@@ -9,10 +9,13 @@ public class GrabbableObject : MonoBehaviour
     public Vector3 desiredHoldArea;
     private Transform holder;
     private bool isHeld = false;
-    
+    public Transform originalParent;
+
     void Start()
     {
-        
+        if (originalParent == null) {
+            originalParent = root.transform.parent;
+        }
     }
 
     void Update()
