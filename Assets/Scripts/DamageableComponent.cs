@@ -10,8 +10,8 @@ interface IKillable
 
 public class DamageableComponent : MonoBehaviour
 {
-    private int maxHealth = 100;
-    private int currentHealth = 100;
+    [SerializeField] int maxHealth = 100;
+    [SerializeField] int currentHealth = 100;
     IKillable parent;
     bool dead = false;
 
@@ -28,6 +28,7 @@ public class DamageableComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("takedamage:" + damage);
         this.currentHealth -= damage;
         if(currentHealth <= 0 && !dead)
         {

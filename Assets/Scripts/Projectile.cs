@@ -6,13 +6,13 @@ public class Projectile : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] Vector3 velocity;
-    [SerializeField] int spin; // maybe idk?
+    [SerializeField] int spin; // spin amount per frame.
     [SerializeField] bool doDamage;
     [SerializeField] int damageAmount;
     [SerializeField] bool destroyOnImpact;
     [SerializeField] string onlyTargetObjectsWithTag; // if this is null, then
     [SerializeField] GameObject target;
-    [SerializeField] float lifeTime = 1200f; // lifetime in seconds.
+    [SerializeField] float lifeTime = 20f; // lifetime in seconds.
     
     [Header("References")]
     [SerializeField] Rigidbody2D rb;
@@ -24,21 +24,16 @@ public class Projectile : MonoBehaviour
     void Start() {
         SetupReferences();
         StartCoroutine(LifeTimeHandler());
+        StartCoroutine(ShrinkSpawn());
     }
 
-    void Update() {
+    void FixedUpdate() {
+        rb.rotation += spin;
         if (!thrown && sender != null) {
             //rb.AddForce(sender.transform.forward * 400f);
             rb.velocity = new Vector3(velocity.x * sender.transform.localScale.x, velocity.y, velocity.z);
             thrown = true;
         }
-    }
-
-    void FixedUpdate() {
-        rb.rotation += spin;
-        Debug.Log(sender.transform.forward);
-        
-        //projectileRoot.transform.Translate(new Vector3(sender.transform.localScale.x, 0, 0) * 0.4f);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -49,13 +44,20 @@ public class Projectile : MonoBehaviour
                 return;
             }
         }
-
+       
         if (doDamage) {
             // call external damage component methods...
+            DamageableComponent dmgComp = other.GetComponent<DamageableComponent>();
+            if (dmgComp != null) {
+                Debug.Log("Test");
+                dmgComp.TakeDamage(damageAmount);
+            }
         }
 
         if (destroyOnImpact) {
-            Destroy(projectileRoot);
+            StopAllCoroutines();
+            StartCoroutine(ShrinkDeath());
+            //Destroy(projectileRoot);
         }
     }
 
@@ -69,5 +71,50 @@ public class Projectile : MonoBehaviour
     IEnumerator LifeTimeHandler() {
         yield return new WaitForSeconds(lifeTime);
         Destroy(projectileRoot);
+    }
+
+    // courtesy of GPT
+    IEnumerator ShrinkDeath() {
+    
+        float duration = 0.5f;
+        Vector3 endScale = Vector3.zero;
+
+        Vector3 startScale = projectileRoot.transform.localScale;
+
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        while (Time.time < endTime) {
+            float t = (Time.time - startTime) / duration;
+            projectileRoot.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            yield return null;
+        }
+
+        projectileRoot.transform.localScale = endScale;
+
+        yield return null;
+        Destroy(projectileRoot);
+    }
+
+    // courtesy of GPT
+    IEnumerator ShrinkSpawn() {
+    
+        float duration = 0.3f;
+        Vector3 endScale = projectileRoot.transform.localScale;
+
+        Vector3 startScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        while (Time.time < endTime) {
+            float t = (Time.time - startTime) / duration;
+            projectileRoot.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            yield return null;
+        }
+
+        projectileRoot.transform.localScale = endScale;
+
+        yield return null;
     }
 }

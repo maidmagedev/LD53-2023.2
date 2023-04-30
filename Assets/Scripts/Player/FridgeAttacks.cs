@@ -31,14 +31,12 @@ public class FridgeAttacks : MonoBehaviour
         GameObject template = throwables[Random.Range(0, throwables.Count)];
         GameObject projectile = Instantiate(template, throwOrigin.transform.position, Quaternion.identity);
         projectile.GetComponentInChildren<Projectile>().sender = this.gameObject; 
-        StopAllCoroutines();
-        StartCoroutine(attackFace());  
+        attackFace();
     }
 
-    IEnumerator attackFace() {
+    void attackFace() {
         PlayerExpressions pExp = FindObjectOfType<PlayerExpressions>();
-        pExp.PlayAnim("exp_arrowface");
-        yield return new WaitForSeconds(0.5f);
-        pExp.PlayAnim("action_idle");
+        StartCoroutine(pExp.PlayAnim("exp_arrowface", true, 0.5f));
+
     }
 }

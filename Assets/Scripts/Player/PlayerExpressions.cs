@@ -10,6 +10,7 @@ public class PlayerExpressions : MonoBehaviour
     public List<string> animClips;
     public int currentIndex = 0;
     public bool changeExpression;
+    int animCallCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,24 @@ public class PlayerExpressions : MonoBehaviour
     void Update()
     {
         if (changeExpression) {
-            PlayAnim(animClips[currentIndex]);
+            StartCoroutine(PlayAnim(animClips[currentIndex], false, 0));
             changeExpression = !changeExpression;
         }
     }
 
-    public void PlayAnim(string clipName) {
+    // public void PlayAnim(string clipName) {
+    //     animator.Play(clipName);
+    // }
+
+    public IEnumerator PlayAnim(string clipName, bool returnToIdle, float duration) {
         animator.Play(clipName);
+        animCallCount++;
+        yield return new WaitForSeconds(duration);
+        animCallCount--;
+        if (animCallCount == 0 && returnToIdle) {
+            animator.Play("action_idle");
+        }
+        yield return null;
     }
 
 
