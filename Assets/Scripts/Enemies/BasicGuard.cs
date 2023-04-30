@@ -1,45 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
 
 
-// 1. Make sure you have this package installed: https://github.com/h8man/NavMeshPlus.git
-// 2. Create an empty GameObject called "NavMesh Manager" and give it the following components: NavMesh Collect Surfaces 2D and Navigation Surface
-// 3. For each tile-map in your grid, add a Navigation Modifier component and set the override to "Walkable" or "Unwalkable"
-// 4. Go back to the NavMesh Manager and set the X rotation to -90 if you haven't already.  Finally, press "bake" to generate the navmesh
-// 5. Nav Agents should follow this basic structure: Agent>>EnemyType>>DmgLight
-// 6. Agent: Requires a navmesh agent component and the "AI Component" Script. X rotation: -90
-// 7. EnemyType: Sprite Renderer and TestEnemy.cs or similar. X rotation: 90
-
 public class BasicGuard : MonoBehaviour, IKillable
 {
     [Header("Stats")]
-    [SerializeField] int damagePerHit = 10; 
-    
+    [SerializeField] int damagePerHit = 10;
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private float attackCooldown = 1f;
-
+    [SerializeField] private bool isPatrolling = true;
 
     [Header("Components")]
-    [SerializeField] private NavMeshAgent navMeshobj;
-    [SerializeField] private GameObject detectionCone;
+    [SerializeField] private DetectionCone detectionCone;
     [SerializeField] private Light2D damageLight;
-    [SerializeField] private float spriteScale = 1f;
 
     DamageableComponent damageableComponent;
     BoxCollider2D boxCollider;
+    private Rigidbody2D rb;
+
+    private float detectionTimer = 0f;
     
-
-
-    private bool mayAttack = true;
-    private bool currentlyAttacking = false;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
         damageableComponent = this.gameObject.AddComponent<DamageableComponent>();
         damageableComponent.SetMaxHealth(maxHealth);
 
@@ -48,43 +35,47 @@ public class BasicGuard : MonoBehaviour, IKillable
     // Update is called once per frame
     void Update()
     {
-        //print(navMeshobj.remainingDistance);
-        //print(mayAttack);
         FlipSprite();
-        /*if (navMeshobj.remainingDistance <= 3  && navMeshobj.remainingDistance > 0 && mayAttack)
+        if (detectionCone.get_touchingPlayer())
         {
-            //Debug.Log("IN ATTACK RANGE");
-            //print("attacking");
-            //GetComponent<TongueAnimations>().SetAttackAnimationState(true);
-            mayAttack = false;
-            StartCoroutine(AttackCooldown());
-            
-        }*/
+            detectionTimer += Time.deltaTime;
+            if (detectionTimer > 0.1f)
+            {
+                detectionCone.get_touching().GetComponent<DamageableComponent>().TakeDamage(100);
+            }
+        }
+        else
+        {
+            detectionTimer = 0f;
+        }
+
+        if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        {
+            Die();
+        }
+    }
+
+    private void Patrol()
+    {
+        
     }
 
     private void FlipSprite()
     {
-        if (navMeshobj.velocity.x < 0)
+        if (rb.velocity.x < 0)
         {
-            transform.localScale = new Vector2(spriteScale, gameObject.transform.localScale.y);
-            detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x)*-1,
-                detectionCone.transform.localScale.y);
-        }
-        else if (navMeshobj.velocity.x > 0)
-        {
-            transform.localScale = new Vector2(spriteScale*-1, gameObject.transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Abs(gameObject.transform.localScale.x)*-1, gameObject.transform.localScale.y);
             detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x),
                 detectionCone.transform.localScale.y);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
+        else if (rb.velocity.x > 0)
         {
-            target.TakeDamage(damagePerHit);
+            transform.localScale = new Vector2(Mathf.Abs(gameObject.transform.localScale.x), gameObject.transform.localScale.y);
+            detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x)*-1,
+                detectionCone.transform.localScale.y);
         }
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -110,14 +101,6 @@ public class BasicGuard : MonoBehaviour, IKillable
         yield return new WaitForSeconds(.5f);
         damageLight.enabled = false;
     }
-
-    IEnumerator AttackCooldown()
-    {
-        yield return new WaitForSeconds(2.75f);
-        //GetComponent<TongueAnimations>().SetAttackAnimationState(false);
-        yield return new WaitForSeconds(attackCooldown);
-        mayAttack = true;
-        //print(mayAttack);
-    }
+    
 
 }

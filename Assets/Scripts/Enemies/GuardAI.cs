@@ -20,8 +20,10 @@ public class GuardAI : MonoBehaviour
         agent.updateRotation = false;
         target = GameObject.FindWithTag("Player"); 
         //print(target);
-        agent.destination = wayPoints[0].transform.position;
-        
+        if (wayPoints.Count > 1)
+        {
+            agent.destination = Vector3.Lerp(this.transform.position, wayPoints[0].transform.position, .1f);
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +32,6 @@ public class GuardAI : MonoBehaviour
         if (detectionCone.get_touchingPlayer())
         {
             patrolling = false;
-            StopAllCoroutines();
             agent.destination = Vector3.Lerp(this.transform.position, target.transform.position, .1f);
         }
         else
@@ -43,17 +44,25 @@ public class GuardAI : MonoBehaviour
     
     private void Patrol()
     {
-        patrolling = true;
-        if (agent.remainingDistance < 1f)
+        if (wayPoints.Count == 1)
         {
-            print(currWaypointIndex);
-            ++currWaypointIndex;
-            if (currWaypointIndex >= wayPoints.Count)
-            {
-                currWaypointIndex = 0;
-            }
+            patrolling = true;
+            return;
         }
-        agent.destination = wayPoints[currWaypointIndex].transform.position;
+        if (!detectionCone.get_touchingPlayer())
+        {
+            patrolling = true;
+            if (agent.remainingDistance < .1f)
+            {
+                print(currWaypointIndex);
+                ++currWaypointIndex;
+                if (currWaypointIndex >= wayPoints.Count)
+                {
+                    currWaypointIndex = 0;
+                }
+            }
+            agent.destination = Vector3.Lerp(this.transform.position, wayPoints[currWaypointIndex].transform.position, .1f);
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // this is mainly intended for the fridge and the drone.
 public class ActorStats : MonoBehaviour, IKillable
@@ -15,7 +16,7 @@ public class ActorStats : MonoBehaviour, IKillable
     }
     void IKillable.Die()
     {
-        throw new System.NotImplementedException();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void IKillable.NotifyDamage()

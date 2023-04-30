@@ -12,6 +12,8 @@ public class DetectionCone : MonoBehaviour
     private Color rayColor = Color.red;
     private bool touchingPlayer = false;
 
+    private Collider2D touching = null;
+
     [SerializeField] private SpriteRenderer detectionVisual;
     // Start is called before the first frame update
     void Start()
@@ -33,48 +35,26 @@ public class DetectionCone : MonoBehaviour
         {
             setAlpha(0.5f);
         }
-        if (drawCone() && !touchingPlayer)
-        {
-            touchingPlayer = true;
-        }
     }
 
-    private bool drawCone()
-    {
-        // Calculate the start and end angles of the cone
-        float startAngle = transform.eulerAngles.z - coneAngle / 2f;
-
-        // Calculate the angle between each segment
-        float angleStep = coneAngle / numSegments;
-
-        // Cast a ray for each segment of the cone
-        for (int i = 0; i < numSegments; i++)
-        {
-            // Calculate the current angle
-            float angle = startAngle + angleStep * i;
-
-            // Calculate the direction of the ray
-            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad) * transform.localScale.x, Mathf.Sin(angle * Mathf.Deg2Rad));
-
-            // Cast a 2D ray in the current direction
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, target); 
-            if (hit.collider != null && hit.collider.CompareTag("Player"))
-            {
-                return true;
-            }
-            // Draw a line to represent the raycast in the Scene view
-            Debug.DrawRay(transform.position, direction * (hit ? hit.distance : rayDistance), rayColor);
-        }
-        return false;
-    }
-    
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !drawCone())
+        if (other.CompareTag("Player"))
         {
             touchingPlayer = false;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        print("collider detected");
+        if (col.CompareTag("Player"))
+        {
+            touchingPlayer = true;
+            touching = col;
+        }
+    }
+
 
     private void setAlpha(float alpha)
     {
@@ -85,6 +65,11 @@ public class DetectionCone : MonoBehaviour
     public bool get_touchingPlayer()
     {
         return touchingPlayer;
+    }
+
+    public Collider2D get_touching()
+    {
+        return touching;
     }
     
 }

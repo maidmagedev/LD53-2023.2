@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JosephScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Levels/DropGate.unity
+    guid: 8097a51ffd1d92b4b94299a27a7659e4
+  - enabled: 1
+    path: Assets/Scenes/Levels/GuardLevel1.unity
+    guid: e7beeb070ae944d4183d0305e0af280f
   m_configObjects: {}
