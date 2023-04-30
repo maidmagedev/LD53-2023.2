@@ -24,7 +24,7 @@ public class DetectionCone : MonoBehaviour
     {
         //print(detectionVisual.color.a);
         //print(detectionVisual.gameObject.name);
-        print(touchingPlayer);
+        //print(touchingPlayer);
         if (touchingPlayer)
         {
             setAlpha(0.8f);
@@ -54,7 +54,7 @@ public class DetectionCone : MonoBehaviour
             float angle = startAngle + angleStep * i;
 
             // Calculate the direction of the ray
-            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad) * transform.localScale.x, Mathf.Sin(angle * Mathf.Deg2Rad));
 
             // Cast a 2D ray in the current direction
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, target); 
