@@ -7,6 +7,7 @@ public class GrabberObject : MonoBehaviour
     public bool isGrabbing;
     public bool isReleaseReady;
     public GameObject heldObject;
+    public GameObject grabZone;
     public Transform holdArea;
     public GameObject playerControllableActors;
 
@@ -24,11 +25,11 @@ public class GrabberObject : MonoBehaviour
         if (isReleaseReady && Input.GetKeyDown(toggleGrabKey))
         {
             Debug.Log("released!");
-            //heldObject.transform.parent = playerControllableActors.transform;
-            //heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            heldObject.transform.parent = playerControllableActors.transform;
+            heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             isGrabbing = false;
             isReleaseReady = false;
-            heldObject.GetComponentInChildren<GrabbableObject>().drop_me();
+            //grabZone.GetComponent<GrabbableObject>().drop_me();
         }
     }
 
@@ -37,16 +38,13 @@ public class GrabberObject : MonoBehaviour
         if (!isGrabbing && other.gameObject.CompareTag("Grabbable") && Input.GetKeyDown(toggleGrabKey))
         {
             Debug.Log("grabbed!");
+            grabZone = other.gameObject;
             heldObject = other.gameObject.GetComponent<GrabbableObject>().root;
-            other.GetComponent<GrabbableObject>().grab_me(holdArea);
-            /*heldObject.transform.parent = transform;
+            //other.GetComponent<GrabbableObject>().grab_me(holdArea);
+            heldObject.transform.parent = transform;
             heldObject.transform.localPosition = holdArea.localPosition;
-            heldObject.GetComponent<Rigidbody2D>().isKinematic = true;*/
-            /*GameObject newObj = Instantiate(heldObject, this.transform);
-            newObj.transform.localPosition = holdArea.localPosition;
-            Destroy(newObj.GetComponent<PlatformingMovementComponent>());
-            Destroy(newObj.GetComponent<SpriteRenderer>());
-            Destroy(newObj.GetComponent<Rigidbody2D>());*/
+            heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            
             isGrabbing = true;
             StartCoroutine(DelayCoroutine(0.1f));
         }

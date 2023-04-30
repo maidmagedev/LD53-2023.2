@@ -17,7 +17,7 @@ public class GrabbableObject : MonoBehaviour
     {
         if (isHeld)
         {
-            this.root.transform.position = new Vector3(holder.transform.position.x, holder.transform.position.y, 0);
+            this.root.transform.position = new Vector3(holder.transform.position.x, holder.transform.position.y - 1, 0);
         }
     }
 
