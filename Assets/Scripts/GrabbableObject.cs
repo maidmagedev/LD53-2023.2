@@ -6,6 +6,7 @@ public class GrabbableObject : MonoBehaviour
 {
     public GameObject root;
     public BoxCollider2D bounds;
+    public Vector3 desiredHoldArea;
     private Transform holder;
     private bool isHeld = false;
     
