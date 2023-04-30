@@ -5,6 +5,7 @@ using UnityEngine;
 public class GrabbableObject : MonoBehaviour
 {
     public GameObject root;
+    public BoxCollider2D bounds;
     private Transform holder;
     private bool isHeld = false;
     

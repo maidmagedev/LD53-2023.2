@@ -11,7 +11,6 @@ public class GrabberObject : MonoBehaviour
     public BoxCollider2D grabberCollider;
 
     public BoxCollider2D dummyGrabbedCollider;
-    public BoxCollider2D grabbedObjectBounds;
 
     public GameObject heldObject;
     public GameObject grabZone;
@@ -24,7 +23,6 @@ public class GrabberObject : MonoBehaviour
         toggleGrabKey = KeyCode.R;
         isGrabbing = false;
         isReleaseReady = false;
-        grabbedObjectBounds.enabled = false;
         dummyGrabbedCollider.enabled = false;
     }
 
@@ -45,7 +43,7 @@ public class GrabberObject : MonoBehaviour
             //grabZone.GetComponent<GrabbableObject>().drop_me();
 
             Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), false);
-            Physics2D.IgnoreCollision(grabberCollider, grabbedObjectBounds, false);
+            //Physics2D.IgnoreCollision(grabberCollider, grabbedObjectBounds, false);
             if (heldObject.GetComponent<PolygonCollider2D>() != null)
                 Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
             if (heldObject.GetComponent<BoxCollider2D>() != null)
@@ -64,8 +62,9 @@ public class GrabberObject : MonoBehaviour
             heldObject.transform.parent = transform;
             heldObject.transform.localPosition = holdArea.localPosition;
             heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            
+
             // copy data of held object collider to grabber collider
+            BoxCollider2D grabbedObjectBounds = grabZone.GetComponent<GrabbableObject>().bounds;
             dummyGrabbedCollider.enabled = true;
             dummyGrabbedCollider.size = grabbedObjectBounds.size;
             dummyGrabbedCollider.offset = grabbedObjectBounds.offset;

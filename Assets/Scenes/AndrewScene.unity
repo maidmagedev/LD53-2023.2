@@ -648,10 +648,18 @@ PrefabInstance:
     - target: {fileID: 1765015769, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
       propertyPath: root
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 485808397}
+    - target: {fileID: 1765015769, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: bounds
+      value: 
+      objectReference: {fileID: 1936527736}
     - target: {fileID: 8360505634842503321, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
       propertyPath: m_Name
       value: Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360505634842503326, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360505634842503327, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
       propertyPath: m_RootOrder
@@ -697,7 +705,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8360505634842503326, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
 --- !u!1 &997807788
 GameObject:
@@ -2198,6 +2207,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!61 &1936527736 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1936527736, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
+  m_PrefabInstance: {fileID: 863561114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1952132777
 GameObject:
   m_ObjectHideFlags: 0
