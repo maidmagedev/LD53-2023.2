@@ -54,3 +54,6 @@ TagManager:
   - name: Player
     uniqueID: 1538428813
     locked: 0
+  - name: Detection Cone
+    uniqueID: 3086450923
+    locked: 0

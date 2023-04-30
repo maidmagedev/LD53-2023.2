@@ -41,7 +41,6 @@ public class DetectionCone : MonoBehaviour
     {
         // Calculate the start and end angles of the cone
         float startAngle = transform.eulerAngles.z - coneAngle / 2f;
-        float endAngle = transform.eulerAngles.z + coneAngle / 2f;
 
         // Calculate the angle between each segment
         float angleStep = coneAngle / numSegments;
@@ -57,6 +56,11 @@ public class DetectionCone : MonoBehaviour
 
             // Cast a 2D ray in the current direction
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, target); 
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
+            {
+                // Do something if the player is detected, for example:
+                Debug.Log("Player detected!");
+            }
 
             // Draw a line to represent the raycast in the Scene view
             Debug.DrawRay(transform.position, direction * (hit ? hit.distance : rayDistance), rayColor);
