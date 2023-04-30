@@ -50,19 +50,14 @@ public class BasicGuard : MonoBehaviour, IKillable
             detectionTimer += Time.deltaTime;
             if (detectionTimer > 0.1f)
             {
-                detectionCone.get_touching().GetComponent<DamageableComponent>().TakeDamage(100);
+                detectionCone.get_touching().GetComponentInParent<DamageableComponent>().TakeDamage(100);
             }
         }
         else
         {
             detectionTimer = 0f;
         }
-
-        // die when you touch hazards
-        if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
-        {
-            Die();
-        }
+        
     }
 
     private void Patrol()
@@ -97,14 +92,10 @@ public class BasicGuard : MonoBehaviour, IKillable
         if (rb.velocity.x < 0)
         {
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
-            //detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x),
-               // detectionCone.transform.localScale.y);
         }
         else if (rb.velocity.x > 0)
         {
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x)*-1, transform.localScale.y);
-            //detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x)*-1,
-              //  detectionCone.transform.localScale.y);
         }
     }
     
@@ -125,7 +116,7 @@ public class BasicGuard : MonoBehaviour, IKillable
     }
     public void NotifyDamage()
     {
-        print("Guard is taking damage");
+        //print("Guard is taking damage");
         StartCoroutine(DamageLightToggle());
         isPatrolling = false;
     }
