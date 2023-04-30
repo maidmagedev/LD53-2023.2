@@ -28,7 +28,7 @@ public class GrabberObject : MonoBehaviour
             //heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             isGrabbing = false;
             isReleaseReady = false;
-            heldObject.GetComponent<GrabbableObject>().drop_me();
+            heldObject.GetComponentInChildren<GrabbableObject>().drop_me();
         }
     }
 
