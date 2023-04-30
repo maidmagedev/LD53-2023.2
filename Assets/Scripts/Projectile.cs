@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
         if (onlyTargetObjectsWithTag.CompareTo("") != 0) { 
             // Since this is not the collider we want, return out of this function.
             if (!other.CompareTag(onlyTargetObjectsWithTag)) {
-                return;
+                //return;
             }
         }
        

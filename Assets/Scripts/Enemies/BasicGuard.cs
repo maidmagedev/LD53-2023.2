@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
 
 
@@ -9,18 +8,21 @@ public class BasicGuard : MonoBehaviour, IKillable
     [Header("Stats")]
     [SerializeField] int damagePerHit = 10;
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float speed = 2f;
     [SerializeField] private bool isPatrolling = true;
-
+    [SerializeField] private GameObject[] waypoints;
+    
     [Header("Components")]
     [SerializeField] private DetectionCone detectionCone;
     [SerializeField] private Light2D damageLight;
 
+    
     DamageableComponent damageableComponent;
     BoxCollider2D boxCollider;
     private Rigidbody2D rb;
 
     private float detectionTimer = 0f;
-    
+    private int currWaypointIndex = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,13 @@ public class BasicGuard : MonoBehaviour, IKillable
     void Update()
     {
         FlipSprite();
+
+        if (isPatrolling)
+        {
+            Patrol();
+        }
+        
+        // if touching the player for long enough, kill them
         if (detectionCone.get_touchingPlayer())
         {
             detectionTimer += Time.deltaTime;
@@ -49,6 +58,7 @@ public class BasicGuard : MonoBehaviour, IKillable
             detectionTimer = 0f;
         }
 
+        // die when you touch hazards
         if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
             Die();
@@ -57,22 +67,44 @@ public class BasicGuard : MonoBehaviour, IKillable
 
     private void Patrol()
     {
+        if (waypoints.Length < 2)
+        {
+            return;
+        }
+        if (Mathf.Abs(transform.position.x - waypoints[currWaypointIndex].transform.position.x) < 1)
+        {
+            ++currWaypointIndex;
+            if (currWaypointIndex >= waypoints.Length)
+            {
+                currWaypointIndex = 0;
+            }
+        }
         
+        // if waypoint is to the left
+        if (transform.position.x > waypoints[currWaypointIndex].transform.position.x)
+        {
+            rb.velocity = Vector2.left * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.right * speed;
+        }
+        //transform.position = Vector2.MoveTowards(transform.position, waypoints[currWaypointIndex].transform.position, Time.deltaTime * speed);
     }
 
     private void FlipSprite()
     {
         if (rb.velocity.x < 0)
         {
-            transform.localScale = new Vector2(Mathf.Abs(gameObject.transform.localScale.x)*-1, gameObject.transform.localScale.y);
-            detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x),
-                detectionCone.transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            //detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x),
+               // detectionCone.transform.localScale.y);
         }
         else if (rb.velocity.x > 0)
         {
-            transform.localScale = new Vector2(Mathf.Abs(gameObject.transform.localScale.x), gameObject.transform.localScale.y);
-            detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x)*-1,
-                detectionCone.transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x)*-1, transform.localScale.y);
+            //detectionCone.transform.localScale = new Vector2(Mathf.Abs(detectionCone.transform.localScale.x)*-1,
+              //  detectionCone.transform.localScale.y);
         }
     }
     
@@ -87,19 +119,23 @@ public class BasicGuard : MonoBehaviour, IKillable
     }
 
     public void Die() {
+        print("guard ded");
         //FindObjectOfType<UIScore>().score += 10;
         Destroy(this.transform.parent.gameObject);  
     }
     public void NotifyDamage()
     {
+        print("Guard is taking damage");
         StartCoroutine(DamageLightToggle());
+        isPatrolling = false;
     }
 
     IEnumerator DamageLightToggle()
     {
         damageLight.enabled = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
         damageLight.enabled = false;
+        isPatrolling = true;
     }
     
 

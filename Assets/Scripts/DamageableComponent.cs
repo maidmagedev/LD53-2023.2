@@ -12,12 +12,12 @@ public class DamageableComponent : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] int currentHealth = 100;
-    IKillable parent;
+    IKillable target;
     bool dead = false;
 
     private void Start()
     {
-        parent = GetComponentInParent<IKillable>();
+        target = GetComponent<IKillable>();
     }
 
     public void SetMaxHealth(int maxHealth)
@@ -33,11 +33,11 @@ public class DamageableComponent : MonoBehaviour
         if(currentHealth <= 0 && !dead)
         {
             this.dead = true;
-            parent.Die(); 
+            target.Die(); 
         }
         else
         {
-            parent.NotifyDamage();
+            target.NotifyDamage();
         }
     }
 

@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class DetectionCone : MonoBehaviour
 {
-    [SerializeField] private float rayDistance = 10f;
+   /* [SerializeField] private float rayDistance = 10f;
     [SerializeField] private LayerMask target;
     [SerializeField] private float coneAngle = 45f;
     [SerializeField] private int numSegments = 16;
-    private Color rayColor = Color.red;
+    private Color rayColor = Color.red;*/
     private bool touchingPlayer = false;
 
     private Collider2D touching = null;
 
-    [SerializeField] private SpriteRenderer detectionVisual;
+    private SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class DetectionCone : MonoBehaviour
             setAlpha(0.5f);
         }
     }
-
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -47,7 +47,7 @@ public class DetectionCone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        print("collider detected");
+        //print("collider detected");
         if (col.CompareTag("Player"))
         {
             touchingPlayer = true;
@@ -58,9 +58,9 @@ public class DetectionCone : MonoBehaviour
 
     private void setAlpha(float alpha)
     {
-        Color oldColor = detectionVisual.color;
+        Color oldColor = sprite.color;
         Color newColor = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-        detectionVisual.color = newColor;
+        sprite.color = newColor;
     }
     public bool get_touchingPlayer()
     {
