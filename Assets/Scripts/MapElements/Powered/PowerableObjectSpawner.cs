@@ -27,8 +27,6 @@ public class PowerableObjectSpawner : MonoBehaviour, PowerableElement
 
     void PowerableElement.SetPowerSource(PowerSource pSource)
     {
-
-
         powerSource = pSource;
     }
 
