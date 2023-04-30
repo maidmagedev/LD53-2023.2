@@ -20,7 +20,6 @@ public class GrabberObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        toggleGrabKey = KeyCode.R;
         isGrabbing = false;
         isReleaseReady = false;
         dummyGrabbedCollider.enabled = false;
