@@ -8,11 +8,15 @@ public class GrabberObject : MonoBehaviour
     public bool isReleaseReady;
 
     public GameObject grabberObject;
-    public Collider2D grabberCollider;
+    public BoxCollider2D grabberCollider;
+
+    public BoxCollider2D dummyGrabbedCollider;
+    public BoxCollider2D grabbedObjectBounds;
+
     public GameObject heldObject;
     public GameObject grabZone;
-    public Transform holdArea;
     public GameObject playerControllableActors;
+    public Transform holdArea;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,8 @@ public class GrabberObject : MonoBehaviour
         toggleGrabKey = KeyCode.R;
         isGrabbing = false;
         isReleaseReady = false;
+        grabbedObjectBounds.enabled = false;
+        dummyGrabbedCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -35,11 +41,15 @@ public class GrabberObject : MonoBehaviour
             heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
             isGrabbing = false;
             isReleaseReady = false;
+            dummyGrabbedCollider.enabled = false;
             //grabZone.GetComponent<GrabbableObject>().drop_me();
 
             Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), false);
+            Physics2D.IgnoreCollision(grabberCollider, grabbedObjectBounds, false);
             if (heldObject.GetComponent<PolygonCollider2D>() != null)
                 Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
+            if (heldObject.GetComponent<BoxCollider2D>() != null)
+                Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<BoxCollider2D>(), false);
         }
     }
 
@@ -54,10 +64,19 @@ public class GrabberObject : MonoBehaviour
             heldObject.transform.parent = transform;
             heldObject.transform.localPosition = holdArea.localPosition;
             heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            
+            // copy data of held object collider to grabber collider
+            dummyGrabbedCollider.enabled = true;
+            dummyGrabbedCollider.size = grabbedObjectBounds.size;
+            dummyGrabbedCollider.offset = grabbedObjectBounds.offset;
+            dummyGrabbedCollider.gameObject.transform.localPosition = holdArea.localPosition;
 
             Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), true);
+            Physics2D.IgnoreCollision(grabberCollider, dummyGrabbedCollider, true);
             if (heldObject.GetComponent<PolygonCollider2D>() != null)
                 Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), true);
+            if (heldObject.GetComponent<PolygonCollider2D>() != null)
+                Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<BoxCollider2D>(), true);
 
             isGrabbing = true;
             StartCoroutine(DelayCoroutine(0.1f));
