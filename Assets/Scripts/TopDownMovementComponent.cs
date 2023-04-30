@@ -66,7 +66,7 @@ public class TopDownMovementComponent : MonoBehaviour
     private void moveAddForce()
     {
         // movement with this method feels a little worse, but it avoids setting velocity directly
-        rb.AddForce(new Vector2(horizontalInput * 80, verticalInput * 80));
+        rb.AddForce(new Vector2(horizontalInput * 50, verticalInput * 50));
     }
 
 

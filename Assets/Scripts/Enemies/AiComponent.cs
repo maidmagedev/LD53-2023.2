@@ -38,7 +38,7 @@ public class AiComponent : MonoBehaviour
         }
         else
         {
-            agent.destination = target.transform.position;
+            agent.destination = Vector3.Lerp(this.transform.position, target.transform.position, .1f);
         }
 
     }
