@@ -38,7 +38,7 @@ public class GrabberObject : MonoBehaviour
             //grabZone.GetComponent<GrabbableObject>().drop_me();
 
             Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), false);
-            if (heldObject.GetComponent<PolygonCollider2D>() == null)
+            if (heldObject.GetComponent<PolygonCollider2D>() != null)
                 Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
         }
     }
@@ -56,7 +56,7 @@ public class GrabberObject : MonoBehaviour
             heldObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
             Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), true);
-            if (heldObject.GetComponent<PolygonCollider2D>() == null)
+            if (heldObject.GetComponent<PolygonCollider2D>() != null)
                 Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), true);
 
             isGrabbing = true;
