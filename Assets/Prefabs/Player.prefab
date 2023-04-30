@@ -350,7 +350,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: d8dc6fa60b5dc1943b5668924240046b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!60 &8360505634842503324
 PolygonCollider2D:
@@ -465,3 +465,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pExp: {fileID: 7076932464869686962}
+  activeCharManager: {fileID: 0}

@@ -1419,34 +1419,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fridge
       objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503323, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503324, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503325, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503325, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503325, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503326, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360505634842503326, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1538428813
-      objectReference: {fileID: 0}
     - target: {fileID: 8360505634842503327, guid: f600573bf0f81ee439a6a7a56e174f29, type: 3}
       propertyPath: m_RootOrder
       value: 1
