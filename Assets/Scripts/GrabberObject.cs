@@ -28,28 +28,12 @@ public class GrabberObject : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+
+
         if (isReleaseReady && Input.GetKeyDown(toggleGrabKey))
         {
-            //Debug.Log("released!");
-            heldObject.transform.parent = playerControllableActors.transform;
-            Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
-            Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
-            heldObjRB.bodyType = RigidbodyType2D.Dynamic;
-            heldObjRB.simulated = true;
-            
-            heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
-            isGrabbing = false;
-            isReleaseReady = false;
-            dummyGrabbedCollider.enabled = false;
-            //grabZone.GetComponent<GrabbableObject>().drop_me();
-
-            Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), false);
-            //Physics2D.IgnoreCollision(grabberCollider, grabbedObjectBounds, false);
-            if (heldObject.GetComponent<PolygonCollider2D>() != null)
-                Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
-            if (heldObject.GetComponent<BoxCollider2D>() != null)
-                Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<BoxCollider2D>(), false);
+            Release();
         }
     }
 
@@ -92,5 +76,30 @@ public class GrabberObject : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         isReleaseReady = true;
+    }
+
+    public void Release() {
+        //Debug.Log("released!");
+        heldObject.transform.parent = playerControllableActors.transform;
+        Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
+        heldObjRB.bodyType = RigidbodyType2D.Dynamic;
+        heldObjRB.simulated = true;
+        if (Mathf.Abs(grabberRB.velocity.x) > 8f) {
+            heldObjRB.velocity = new Vector2(grabberRB.velocity.x, grabberRB.velocity.y);
+        } else {
+            heldObjRB.velocity = Vector3.zero;
+        }
+        isGrabbing = false;
+        isReleaseReady = false;
+        dummyGrabbedCollider.enabled = false;
+        //grabZone.GetComponent<GrabbableObject>().drop_me();
+
+        Physics2D.IgnoreCollision(grabberCollider, grabZone.GetComponent<BoxCollider2D>(), false);
+        //Physics2D.IgnoreCollision(grabberCollider, grabbedObjectBounds, false);
+        if (heldObject.GetComponent<PolygonCollider2D>() != null)
+            Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<PolygonCollider2D>(), false);
+        if (heldObject.GetComponent<BoxCollider2D>() != null)
+            Physics2D.IgnoreCollision(grabberCollider, heldObject.GetComponent<BoxCollider2D>(), false);
     }
 }
