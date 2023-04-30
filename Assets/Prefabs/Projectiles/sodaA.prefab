@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7959782599518904190}
   - component: {fileID: 7959782599518904185}
   m_Layer: 0
-  m_Name: burger
+  m_Name: sodaA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1538428813
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1691821346, guid: 43c69f429b40a4a4190113a24ed63a16, type: 3}
+  m_Sprite: {fileID: 766225745, guid: 43c69f429b40a4a4190113a24ed63a16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
