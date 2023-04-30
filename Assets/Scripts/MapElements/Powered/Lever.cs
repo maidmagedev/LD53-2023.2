@@ -20,6 +20,8 @@ public class Lever : PowerSource
     [SerializeField] GrabbableObject grabbable;
     private Vector3 originalPos;
     private Quaternion originalRot;
+    public GameObject pElemSource; //Should have a pElem component.
+
     public PowerableElement pElem;
 
 
@@ -38,7 +40,7 @@ public class Lever : PowerSource
         if (grabber == null) {
             grabber = FindObjectOfType<GrabberObject>();
         }
-        pElem = GetComponent<PowerableElement>();
+        pElem = pElemSource.GetComponentInChildren<PowerableElement>();
         pElem.SetPowerSource(this);
 
         originalPos = grabbable.root.transform.position;
@@ -49,14 +51,14 @@ public class Lever : PowerSource
     void Update()
     {
         if (leverGrab.transform.position.x - main.transform.position.x > 0.45) {
-            Debug.Log("B");
+            // Debug.Log("B");
             pos = Position.b;
         } else if (leverGrab.transform.position.x - main.transform.position.x < -0.45) {
             pos = Position.a;
-            Debug.Log("A");
+            // Debug.Log("A");
 
         } else {
-            Debug.Log("C");
+            // Debug.Log("C");
 
             pos = Position.center;
         }
@@ -124,7 +126,7 @@ public class Lever : PowerSource
         if (lerping) {
             yield break;
         }
-        Debug.Log("Test");
+        // Debug.Log("Test");
         lerping = true;
         Quaternion targetQuaternion = Quaternion.Euler(targetRotation);
         Quaternion startRotation = transform.rotation;

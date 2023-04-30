@@ -220,7 +220,6 @@ GameObject:
   - component: {fileID: 6346599360589447632}
   - component: {fileID: 6346599360589447633}
   - component: {fileID: 6346599360589447634}
-  - component: {fileID: 1598278136}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -259,13 +258,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPowered: 0
+  pos: 1
   enabledPosition: 2
   neutralEnabled: 0
-  Drone: {fileID: 6346599360155772580}
+  angleZ_posA: 60
+  angleZ_posB: 300
+  angleZ_posCenter: 0
+  leverGrab: {fileID: 6346599360155772580}
   main: {fileID: 6346599361207801269}
   grabber: {fileID: 0}
   grabbable: {fileID: 6346599360366688792}
-  pos: 1
+  pElemSource: {fileID: 0}
   lerping: 0
   audioSource: {fileID: 0}
   volume: 0
@@ -295,20 +298,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8042706, y: 0.39848948}
   m_EdgeRadius: 0
---- !u!114 &1598278136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6346599360589447635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b5246cbba7cd4f4a820089d1bd2ec53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  stateWhenPowered: 1
 --- !u!1 &6346599360806272395
 GameObject:
   m_ObjectHideFlags: 0

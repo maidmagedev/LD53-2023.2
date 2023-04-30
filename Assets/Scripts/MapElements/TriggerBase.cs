@@ -27,7 +27,8 @@ public class TriggerBase : MonoBehaviour
     {
         OnEnter,
         OnExit,
-        InteractionPrompt
+        InteractionPrompt,
+        OnStay
     }
 
     // Start is called before the first frame update
@@ -92,8 +93,9 @@ public class TriggerBase : MonoBehaviour
             // targetting a specific target, this collider is not the target.
             return;
         }
-
-        if (activationMode == ModeOfActivation.InteractionPrompt)
+        if (activationMode == ModeOfActivation.OnStay) {
+            DoAction();
+        } else if (activationMode == ModeOfActivation.InteractionPrompt)
         {
             if (Input.GetKeyDown(settings.interactKey))
             {
