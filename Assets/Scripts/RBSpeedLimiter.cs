@@ -5,7 +5,8 @@ using UnityEngine;
 public class RBSpeedLimiter : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
-    public float maxSpeed;
+    public float maxSpeedX;
+    public float maxSpeedY;
 
     private void Start()
     {
@@ -14,21 +15,20 @@ public class RBSpeedLimiter : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Mathf.Abs(rb.velocity.x));
-        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+        if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
         {
             if (rb.velocity.x > 0)
-                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(maxSpeedX, rb.velocity.y);
             else if (rb.velocity.x < 0)
-                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(-maxSpeedX, rb.velocity.y);
         }
 
-        if (Mathf.Abs(rb.velocity.y) > maxSpeed)
+        if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
         {
             if (rb.velocity.y > 0)
-                rb.velocity = new Vector2(rb.velocity.x, maxSpeed);
+                rb.velocity = new Vector2(rb.velocity.x, maxSpeedY);
             else if (rb.velocity.y < 0)
-                rb.velocity = new Vector2(rb.velocity.x, -maxSpeed);
+                rb.velocity = new Vector2(rb.velocity.x, -maxSpeedY);
         }
     }
 }

@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 1343212335}
   - component: {fileID: 1343212336}
   - component: {fileID: 975225128321566409}
+  - component: {fileID: 7611021754314384555}
   m_Layer: 0
   m_Name: Fridge
   m_TagString: Player
@@ -564,3 +565,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pExp: {fileID: 7076932464869686962}
+--- !u!114 &7611021754314384555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360505634842503321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae41cbea2c710e241bc1ce4a22024b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  maxSpeedX: 2
+  maxSpeedY: 16
