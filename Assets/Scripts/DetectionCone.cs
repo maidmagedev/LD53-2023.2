@@ -27,11 +27,11 @@ public class DetectionCone : MonoBehaviour
         print(touchingPlayer);
         if (touchingPlayer)
         {
-            setAlpha(150);
+            setAlpha(0.8f);
         }
         else
         {
-            setAlpha(100);
+            setAlpha(0.5f);
         }
         if (drawCone() && !touchingPlayer)
         {
@@ -76,7 +76,7 @@ public class DetectionCone : MonoBehaviour
         }
     }
 
-    private void setAlpha(int alpha)
+    private void setAlpha(float alpha)
     {
         Color oldColor = detectionVisual.color;
         Color newColor = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
@@ -86,6 +86,5 @@ public class DetectionCone : MonoBehaviour
     {
         return touchingPlayer;
     }
-    
     
 }
