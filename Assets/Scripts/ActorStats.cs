@@ -6,6 +6,13 @@ using UnityEngine;
 public class ActorStats : MonoBehaviour, IKillable
 {
     [SerializeField] PlayerExpressions pExp;
+    [SerializeField] ActiveCharacterManager activeCharManager;
+
+    void Start() {
+        if (activeCharManager == null) {
+            activeCharManager = FindObjectOfType<ActiveCharacterManager>();
+        }
+    }
     void IKillable.Die()
     {
         throw new System.NotImplementedException();
@@ -14,6 +21,10 @@ public class ActorStats : MonoBehaviour, IKillable
     void IKillable.NotifyDamage()
     {
         HitBuffer();
+        if (this.gameObject.name.CompareTo("Fridge") != 0) {
+            Debug.Log("TESTING FOR HIT");
+            TrollFaceManager();
+        }
     }
 
     void HitBuffer() {
@@ -23,4 +34,9 @@ public class ActorStats : MonoBehaviour, IKillable
 
     }
    
+    void TrollFaceManager() {
+        
+        StartCoroutine(activeCharManager.fridge.GetComponentInChildren<PlayerExpressions>().PlayAnim("exp_trollface", true, 0.5f));
+        
+    }
 }

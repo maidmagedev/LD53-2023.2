@@ -43,6 +43,7 @@ public class TopDownMovementComponent : MonoBehaviour
             horizontalInput *= moveLimiter;
             verticalInput *= moveLimiter;
         }
+        FlipSprite();
         //move();
     }
 
@@ -80,12 +81,12 @@ public class TopDownMovementComponent : MonoBehaviour
         if (Mathf.Abs(angle) > 150)
         {
             // facing left
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, -0.3f);
+            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, -1f);
         }
         else if (Mathf.Abs(angle) < 40)
         {
             // facing right
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, 0.3f);
+            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, 1f);
         }
 
     }
@@ -95,11 +96,11 @@ public class TopDownMovementComponent : MonoBehaviour
     {
         if (rb.velocity.x < 0) // made this velocity based instead
         {
-            gameObject.transform.localScale = new Vector2(-0.3f, gameObject.transform.localScale.y);
+            gameObject.transform.localScale = new Vector2(-1f, gameObject.transform.localScale.y);
         }
         else if (rb.velocity.x > 0)
         {
-            gameObject.transform.localScale = new Vector2(0.3f, gameObject.transform.localScale.y);
+            gameObject.transform.localScale = new Vector2(1f, gameObject.transform.localScale.y);
         }
 
     }

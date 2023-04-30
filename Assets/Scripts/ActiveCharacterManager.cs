@@ -7,8 +7,8 @@ using UnityEngine;
 public class ActiveCharacterManager : MonoBehaviour
 {
     [SerializeField] GameObject followCam;
-    [SerializeField] GameObject fridge;
-    [SerializeField] GameObject drone;
+    public GameObject fridge;
+    public GameObject drone;
 
     public GameObject activeActor;
     private List<GameObject> actors;
