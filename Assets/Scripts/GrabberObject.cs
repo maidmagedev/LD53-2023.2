@@ -27,7 +27,7 @@ public class GrabberObject : MonoBehaviour
     {
         if (isReleaseReady && Input.GetKeyDown(toggleGrabKey))
         {
-            Debug.Log("released!");
+            //Debug.Log("released!");
             heldObject.transform.parent = playerControllableActors.transform;
             Rigidbody2D grabberRB = grabberObject.GetComponent<Rigidbody2D>();
             Rigidbody2D heldObjRB = heldObject.GetComponent<Rigidbody2D>();
@@ -46,7 +46,7 @@ public class GrabberObject : MonoBehaviour
     {
         if (!isGrabbing && other.gameObject.CompareTag("Grabbable") && Input.GetKeyDown(toggleGrabKey))
         {
-            Debug.Log("grabbed!");
+            //Debug.Log("grabbed!");
             grabZone = other.gameObject;
             heldObject = other.gameObject.GetComponent<GrabbableObject>().root;
             //other.GetComponent<GrabbableObject>().grab_me(holdArea);
