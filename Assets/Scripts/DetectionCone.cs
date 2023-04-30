@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class DetectionCone : MonoBehaviour
     [SerializeField] private float coneAngle = 45f;
     [SerializeField] private int numSegments = 16;
     private Color rayColor = Color.red;
-    
+    private bool touchingPlayer = false;
+
+    [SerializeField] private SpriteRenderer detectionVisual;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,25 +22,24 @@ public class DetectionCone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Cast a 2D ray from the current position in the forward direction of the transform
-        /*for (int i = 0; i < 10; i++)
+        //print(detectionVisual.color.a);
+        //print(detectionVisual.gameObject.name);
+        print(touchingPlayer);
+        if (touchingPlayer)
         {
-            RaycastHit2D hit = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + i, 0), transform.right, rayDistance, target);
-
-            // Draw a visible ray in the Scene view for debugging purposes
-            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + i, 0), transform.right * rayDistance, rayColor, Time.deltaTime);
-            // Check if the ray hits the player (or any other object on the specified layer(s))
-            if (hit.collider != null && hit.collider.CompareTag("Player"))
-            {
-                // Do something if the player is detected, for example:
-                Debug.Log("Player detected!");
-            }
-        }*/
-        drawCone();
-        
+            setAlpha(150);
+        }
+        else
+        {
+            setAlpha(100);
+        }
+        if (drawCone() && !touchingPlayer)
+        {
+            touchingPlayer = true;
+        }
     }
 
-    private void drawCone()
+    private bool drawCone()
     {
         // Calculate the start and end angles of the cone
         float startAngle = transform.eulerAngles.z - coneAngle / 2f;
@@ -58,14 +60,32 @@ public class DetectionCone : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, target); 
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                // Do something if the player is detected, for example:
-                Debug.Log("Player detected!");
+                return true;
             }
-
             // Draw a line to represent the raycast in the Scene view
             Debug.DrawRay(transform.position, direction * (hit ? hit.distance : rayDistance), rayColor);
         }
+        return false;
     }
     
-   
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && !drawCone())
+        {
+            touchingPlayer = false;
+        }
+    }
+
+    private void setAlpha(int alpha)
+    {
+        Color oldColor = detectionVisual.color;
+        Color newColor = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+        detectionVisual.color = newColor;
+    }
+    public bool get_touchingPlayer()
+    {
+        return touchingPlayer;
+    }
+    
+    
 }

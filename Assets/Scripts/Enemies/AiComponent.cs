@@ -18,7 +18,7 @@ public class AiComponent : MonoBehaviour
 
        
         target = GameObject.FindWithTag("Player"); 
-        print(target);
+        //print(target);
     }
 
     // Update is called once per frame
