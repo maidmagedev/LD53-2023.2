@@ -11,6 +11,7 @@ public class Lever : PowerSource
     private Position offPosition;
     [SerializeField] bool isHorizontal;
     [SerializeField] bool isBinary;
+    [SerializeField] GameObject inverterObj; // if the bool is not binary - this is the inverter power source that will power things in the off setting.
     [SerializeField] bool stayPowered; // Cannot be disabled.
     private bool neutralEnabled;
     [SerializeField] float angleZ_posA;
@@ -24,6 +25,7 @@ public class Lever : PowerSource
     [SerializeField] GrabberObject grabber;
     [SerializeField] GrabbableObject grabbable;
     [SerializeField] Settings settings;
+    [SerializeField] PowerableElement inverter;
     private Vector3 originalPos;
     private Quaternion originalRot;
     //public GameObject pElemSource; //Should have a pElem component.
@@ -65,6 +67,8 @@ public class Lever : PowerSource
         //pElem.SetPowerSource(this);
 
         SetupReferences();
+        //inverter = inverterObj.GetComponent<PowerableElement>();
+        //inverter.SetPowerSource(this);
 
         originalPos = grabbable.root.transform.position;
         originalRot = grabbable.root.transform.rotation;
@@ -108,6 +112,7 @@ public class Lever : PowerSource
             foreach (PowerableElement pElem in powerableElements) {
                 pElem.StartPowered();
             }
+            //inverter.EndPowered();
             if (stayPowered) {
                 Release(true);
                 leverGrab.SetActive(false);
@@ -119,6 +124,7 @@ public class Lever : PowerSource
             foreach (PowerableElement pElem in powerableElements) {
                 pElem.EndPowered();
             }
+            //inverter.StartPowered();
             isPowered = false;
             
         }
