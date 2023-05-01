@@ -60,7 +60,7 @@ public class EnemyLaser : MonoBehaviour
 
         if (destroyOnContact) {
             StopAllCoroutines();
-            StartCoroutine(ShrinkDeath());
+            //StartCoroutine(ShrinkDeath());
         }
     }
 

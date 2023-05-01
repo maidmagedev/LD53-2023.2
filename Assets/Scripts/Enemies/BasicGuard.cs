@@ -13,7 +13,9 @@ public class BasicGuard : MonoBehaviour, IKillable
     [Header("Stats")]
     [SerializeField] int damagePerHit = 10;
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float targetSpeed = 2f;
+    private float speed;
+    
     [SerializeField] private bool isPatrolling = true;
     [SerializeField] private GameObject[] waypoints;
     
@@ -21,7 +23,9 @@ public class BasicGuard : MonoBehaviour, IKillable
     [SerializeField] ActiveCharacterManager activeCharacterManager;
     [SerializeField] private DetectionCone detectionCone;
     [SerializeField] private Light2D damageLight;
-
+    private bool targetting;
+    [SerializeField] GameObject sightHolder;
+    [SerializeField] bool trackPlayer;
     
     DamageableComponent damageableComponent;
     BoxCollider2D boxCollider;
@@ -37,7 +41,7 @@ public class BasicGuard : MonoBehaviour, IKillable
         rb = GetComponent<Rigidbody2D>();
         damageableComponent = this.gameObject.AddComponent<DamageableComponent>();
         damageableComponent.SetMaxHealth(maxHealth);
-
+        speed = targetSpeed;
     }
 
     // Update is called once per frame
@@ -57,7 +61,7 @@ public class BasicGuard : MonoBehaviour, IKillable
             if (detectionTimer > 0.1f)
             {
                 if (!fireCooldown) {
-                    Debug.Log("FIRE!");
+                    //Debug.Log("FIRE!");
                     Transform targetTransform = activeCharacterManager.activeActor.transform;
                     GameObject projectile = Instantiate(pfProjectile, projectilePos.position, Quaternion.identity);
                     // Rotate the object to face the target transform
@@ -68,9 +72,19 @@ public class BasicGuard : MonoBehaviour, IKillable
                     StartCoroutine(Cooldown());
                 }
             }
+            speed = 0;
+
+            if (trackPlayer) {
+                Transform targetTransform = activeCharacterManager.activeActor.transform;
+                Vector3 direction = (targetTransform.position - transform.position);
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg * 1;
+
+                sightHolder.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
         }
         else
-        {
+        {   
+            speed = targetSpeed;
             detectionTimer = 0f;
         }
         
@@ -118,11 +132,11 @@ public class BasicGuard : MonoBehaviour, IKillable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
-        {
-            print("dealing damage");
-            target.TakeDamage(damagePerHit);
-        }
+        // if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
+        // {
+        //     print("dealing damage");
+        //     target.TakeDamage(damagePerHit);
+        // }
     }
 
     public void Die() {
