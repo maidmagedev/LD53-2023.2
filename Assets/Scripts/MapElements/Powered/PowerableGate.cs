@@ -32,7 +32,7 @@ public class PowerableGate : MonoBehaviour, PowerableElement
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = transform.position;
+        startPosition = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class PowerableGate : MonoBehaviour, PowerableElement
             }
         } else {
             StopAllCoroutines();
-            StartCoroutine(LerpToPos());
+            StartCoroutine(LerpToPos(transform.localPosition, endPosition));
         }
         
         
@@ -75,7 +75,12 @@ public class PowerableGate : MonoBehaviour, PowerableElement
 
     public void EndPowered()
     {
-        //throw new System.NotImplementedException();
+        // stay powered basically
+        if (activateOnce && activatedBefore) {
+            return;
+        }
+        StopAllCoroutines();
+        StartCoroutine(LerpToPos(transform.localPosition, startPosition));
     }
 
     public void SetPowerSource(PowerSource pSource)
@@ -83,15 +88,14 @@ public class PowerableGate : MonoBehaviour, PowerableElement
         powerSource = pSource;
     }
 
-    IEnumerator LerpToPos() {
+    IEnumerator LerpToPos(Vector3 startpos, Vector3 endpos) {
         Debug.Log("Test");
         float time = 0.0f;
-        Vector3 startPos = transform.localPosition;
         Vector3 targetPosition = transform.InverseTransformPoint(endPosition);
         while (time < duration) {
             float tVal = time / duration;
             tVal = tVal * tVal * (3f - 2f * tVal);
-            transform.localPosition = Vector3.Lerp(startPos, endPosition, tVal);
+            transform.localPosition = Vector3.Lerp(startpos, endpos, tVal);
             time += Time.deltaTime;
             yield return null;
         }
