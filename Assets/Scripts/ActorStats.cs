@@ -23,7 +23,6 @@ public class ActorStats : MonoBehaviour, IKillable
     {
         HitBuffer();
         if (this.gameObject.name.CompareTo("Fridge") != 0) {
-            //Debug.Log("TESTING FOR HIT");
             TrollFaceManager();
         }
     }
