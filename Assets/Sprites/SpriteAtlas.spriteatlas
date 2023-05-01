@@ -133,6 +133,7 @@ SpriteAtlas:
   - {fileID: -2038138234, guid: 65aee359c9834394990972efe1af6f65, type: 3}
   - {fileID: -49253925, guid: 65aee359c9834394990972efe1af6f65, type: 3}
   - {fileID: 21300000, guid: 9d38a7691dd1dc545bc5f58e4773ce59, type: 3}
+  - {fileID: 21300000, guid: be08d6a9deed9bf45a5737208f6e2407, type: 3}
   - {fileID: 21300000, guid: ccaed3b9930396341944f74a29dd953c, type: 3}
   - {fileID: -401616678, guid: e921bf3af533e994383fe9e635009151, type: 3}
   - {fileID: -778589767, guid: e921bf3af533e994383fe9e635009151, type: 3}
@@ -248,6 +249,7 @@ SpriteAtlas:
   - shutter_1
   - shutter_0
   - panel
+  - laserbeam
   - light
   - gate_bg_5
   - gate_bg_4

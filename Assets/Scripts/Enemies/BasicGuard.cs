@@ -5,6 +5,11 @@ using UnityEngine.Rendering.Universal;
 
 public class BasicGuard : MonoBehaviour, IKillable
 {
+    [Header("Settings")]
+    [SerializeField] GameObject pfProjectile;
+    [SerializeField] Transform projectilePos;
+    [SerializeField] float cooldownDuration;
+    private bool fireCooldown;
     [Header("Stats")]
     [SerializeField] int damagePerHit = 10;
     [SerializeField] private int maxHealth = 100;
@@ -13,6 +18,7 @@ public class BasicGuard : MonoBehaviour, IKillable
     [SerializeField] private GameObject[] waypoints;
     
     [Header("Components")]
+    [SerializeField] ActiveCharacterManager activeCharacterManager;
     [SerializeField] private DetectionCone detectionCone;
     [SerializeField] private Light2D damageLight;
 
@@ -50,7 +56,17 @@ public class BasicGuard : MonoBehaviour, IKillable
             detectionTimer += Time.deltaTime;
             if (detectionTimer > 0.1f)
             {
-                detectionCone.get_touching().GetComponentInParent<DamageableComponent>().TakeDamage(100);
+                if (!fireCooldown) {
+                    Debug.Log("FIRE!");
+                    Transform targetTransform = activeCharacterManager.activeActor.transform;
+                    GameObject projectile = Instantiate(pfProjectile, projectilePos.position, Quaternion.identity);
+                    // Rotate the object to face the target transform
+                    Vector3 direction = targetTransform.position - projectile.transform.localPosition;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    //detectionCone.get_touching().GetComponentInParent<DamageableComponent>().TakeDamage(100);
+                    projectile.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    StartCoroutine(Cooldown());
+                }
             }
         }
         else
@@ -129,5 +145,11 @@ public class BasicGuard : MonoBehaviour, IKillable
         isPatrolling = true;
     }
     
+
+    private IEnumerator Cooldown() {
+        fireCooldown = true;
+        yield return new WaitForSeconds(cooldownDuration);
+        fireCooldown = false;
+    }
 
 }
