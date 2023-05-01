@@ -7,27 +7,23 @@ public class BackgroundMusic : MonoBehaviour
 {
     [SerializeField] List<AudioClip> Tracks = new();
     AudioSource myAudio;
-    // Start is called before the first frame update
-    void Start()
-    {
-        myAudio = GetComponent<AudioSource>();
-    }
 
     public void AudioToggle()
     {
         AudioListener.pause = !AudioListener.pause;
     }
-    private void Awake()
+    private void Start()
     {
+        myAudio = GetComponent<AudioSource>();
         int numMusic = FindObjectsOfType<BackgroundMusic>().Length;
         if (numMusic > 1)
         {
             Destroy(gameObject);
         }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        //else
+        //{
+        //    DontDestroyOnLoad(gameObject);
+        //}
         myAudio.clip = Tracks[SceneManager.GetActiveScene().buildIndex];
         myAudio.Play();
     }
