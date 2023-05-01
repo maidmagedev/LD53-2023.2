@@ -735,6 +735,100 @@ RectTransform:
   m_AnchoredPosition: {x: -278.9, y: 181.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &904242797
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 35900397, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161826048, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: behavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161826048, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: selectiveCollider
+      value: 
+      objectReference: {fileID: 904242798}
+    - target: {fileID: 1161826048, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: activeCharacterManager
+      value: 
+      objectReference: {fileID: 997797687}
+    - target: {fileID: 7202334660190150624, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150624, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6265764
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150624, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13000011
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202334660190150630, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 1425898205}
+    - target: {fileID: 7202334660190150631, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: m_Name
+      value: Forced Drop Trigger (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+--- !u!61 &904242798 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 35900396, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+  m_PrefabInstance: {fileID: 904242797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904244410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4206572534310284192, guid: 09d01a14ea41fcb4d9076ad9edc46a56, type: 3}
@@ -1318,7 +1412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1921381876
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3322,7 +3416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8577735219068752093, guid: c247835a159436c4d865ecd0e6977e31, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c247835a159436c4d865ecd0e6977e31, type: 3}
@@ -4047,6 +4141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1161826048, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
+      propertyPath: activeCharacterManager
+      value: 
+      objectReference: {fileID: 997797687}
     - target: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -4091,10 +4189,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7202334660190150630, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 1425898205}
     - target: {fileID: 7202334660190150631, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
       propertyPath: m_Name
       value: Forced Drop Trigger
@@ -4315,6 +4409,10 @@ PrefabInstance:
     - target: {fileID: 8920133477156312215, guid: fef45e0f3d060bd41832a0f106e46c68, type: 3}
       propertyPath: m_Name
       value: bundleofbeams
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920133477156312215, guid: fef45e0f3d060bd41832a0f106e46c68, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fef45e0f3d060bd41832a0f106e46c68, type: 3}
