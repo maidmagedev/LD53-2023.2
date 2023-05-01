@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Hazards : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         DamageableComponent dmgComp = col.gameObject.GetComponent<DamageableComponent>();
         if (dmgComp != null) {
