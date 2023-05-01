@@ -9,12 +9,14 @@ public class Lever : PowerSource
 
     [SerializeField] Position enabledPosition;
     private Position offPosition;
+    [SerializeField] bool isHorizontal;
     [SerializeField] bool isBinary;
     [SerializeField] bool stayPowered; // Cannot be disabled.
     private bool neutralEnabled;
     [SerializeField] float angleZ_posA;
     [SerializeField] float angleZ_posB;
     [SerializeField] float angleZ_posCenter;
+    [SerializeField] float range;
 
     [Header("references")]
     [SerializeField] GameObject leverGrab;
@@ -69,13 +71,24 @@ public class Lever : PowerSource
     void Update()
     {
         // Determine what state the lever is in.
-        if (leverGrab.transform.position.x - main.transform.position.x > 0.45) {
-            pos = Position.b;
-        } else if (leverGrab.transform.position.x - main.transform.position.x < -0.45) {
-            pos = Position.a;
+        if (isHorizontal) {
+            if (leverGrab.transform.position.x - main.transform.position.x > 0.45) {
+                pos = Position.b;
+            } else if (leverGrab.transform.position.x - main.transform.position.x < -0.45) {
+                pos = Position.a;
 
-        } else if (!isPowered) {
-            pos = Position.center;
+            } else if (!isPowered) {
+                pos = Position.center;
+            }
+        } else {
+            if (leverGrab.transform.position.y - main.transform.position.y > 0.016) {
+                pos = Position.a;
+            } else if (leverGrab.transform.position.y - main.transform.position.y < -0.016) {
+                pos = Position.b;
+
+            } else if (!isPowered) {
+                pos = Position.center;
+            }
         }
 
 
@@ -141,7 +154,7 @@ public class Lever : PowerSource
     }
 
     public void Release(bool fromInside) {
-
+        
         if (fromInside) {
             grabber.Release();
         }
@@ -175,17 +188,17 @@ public class Lever : PowerSource
         //Debug.Log("Rotating");
         lerping = true;
         Quaternion targetQuaternion = Quaternion.Euler(targetRotation);
-        Quaternion startRotation = transform.rotation;
+        Quaternion startRotation = transform.localRotation;
         float elapsedTime = 0f;
         
         while (elapsedTime < duration)
         {
-            transform.rotation = Quaternion.Lerp(startRotation, targetQuaternion, elapsedTime / duration);
+            transform.localRotation = Quaternion.Lerp(startRotation, targetQuaternion, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        transform.rotation = targetQuaternion;
+        transform.localRotation = targetQuaternion;
         lerping = false;
     }
 }

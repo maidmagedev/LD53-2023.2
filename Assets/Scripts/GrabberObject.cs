@@ -84,6 +84,9 @@ public class GrabberObject : MonoBehaviour
     }
 
     public void Release() {
+        if (heldObject == null) {
+            return;
+        }
         //Debug.Log("released!");
         //heldObject.transform.parent = playerControllableActors.transform;
         heldObject.transform.parent = heldObject.GetComponentInChildren<GrabbableObject>().originalParent;
