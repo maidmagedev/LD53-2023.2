@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class BackgroundMusic : MonoBehaviour
 {
     [SerializeField] List<AudioClip> Tracks = new();
-
     AudioSource myAudio;
     // Start is called before the first frame update
     void Start()
