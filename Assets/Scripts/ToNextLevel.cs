@@ -10,7 +10,10 @@ public class ToNextLevel : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            loadNext();
+            //loadNext();
+            SceneTransition scene_Transition = FindObjectOfType<SceneTransition>();
+            scene_Transition.behavior = SceneTransition.Behavior.loadNext;
+            scene_Transition.FadeOut();
         }
     }
 

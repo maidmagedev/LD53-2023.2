@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour
 {
     [SerializeField] Animator animator;
-    [SerializeField] Behavior behavior;
-    [SerializeField] int desiredSceneNumber;
+    public Behavior behavior;
+    public int desiredSceneNumber;
 
     public enum Behavior {
         reload,
