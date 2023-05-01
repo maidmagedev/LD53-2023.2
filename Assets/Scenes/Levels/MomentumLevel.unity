@@ -540,13 +540,13 @@ PrefabInstance:
       value: Background Music
       objectReference: {fileID: 0}
     - target: {fileID: 6159793659032667927, guid: 89a8bb20a2d500b4696447ceff6aa1ae, type: 3}
-      propertyPath: Tracks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6159793659032667927, guid: 89a8bb20a2d500b4696447ceff6aa1ae, type: 3}
-      propertyPath: Tracks.Array.data[0]
+      propertyPath: Tracks.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 92672ed0cec3b564dbcc70043dcbc947, type: 3}
+      objectReference: {fileID: 8300000, guid: 410b616bfcbc8bf409c5829ab06aa4d5, type: 3}
+    - target: {fileID: 6159793659032667927, guid: 89a8bb20a2d500b4696447ceff6aa1ae, type: 3}
+      propertyPath: Tracks.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: c56b23d17244e9c4691bc52bebb04450, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89a8bb20a2d500b4696447ceff6aa1ae, type: 3}
 --- !u!1 &737862339
