@@ -56,6 +56,9 @@ public class Lever : PowerSource
             } else if (enabledPosition == Position.b) {
                 offPosition = Position.a;
             }
+        } else {
+            neutralEnabled = true;
+        
         }
 
         //pElem = pElemSource.GetComponentInChildren<PowerableElement>();
@@ -77,7 +80,7 @@ public class Lever : PowerSource
             } else if (leverGrab.transform.position.x - main.transform.position.x < -0.45) {
                 pos = Position.a;
 
-            } else if (!isPowered) {
+            } else /*if (!isPowered)*/ {
                 pos = Position.center;
             }
         } else {

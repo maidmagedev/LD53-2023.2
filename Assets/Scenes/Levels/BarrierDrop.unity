@@ -3957,12 +3957,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6346599360589447633, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
       propertyPath: powerableElementSources.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6346599360589447633, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
       propertyPath: powerableElementSources.Array.data[0]
       value: 
       objectReference: {fileID: 692155486}
+    - target: {fileID: 6346599360589447633, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
+      propertyPath: powerableElementSources.Array.data[1]
+      value: 
+      objectReference: {fileID: 1741349470}
     - target: {fileID: 6346599360589447635, guid: 4ae7c975f3d8ba74d800873dc26da131, type: 3}
       propertyPath: m_Name
       value: LeverHorizontal

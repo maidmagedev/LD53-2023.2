@@ -13,7 +13,6 @@ public class PowerableFunctionCaller : MonoBehaviour, PowerableElement
 
     void PowerableElement.EndPowered()
     {
-        throw new System.NotImplementedException();
     }
 
     void PowerableElement.SetPowerSource(PowerSource pSource)
