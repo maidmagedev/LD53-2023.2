@@ -5,8 +5,8 @@ using TMPro;
 
 public class TextFade : MonoBehaviour
 {
-    [SerializeField] float duration = 1.0f; // The duration of the fade animation
-    [SerializeField] TextMeshProUGUI text; // The TextMeshProUGUI component to fade
+    public float duration = 1.0f; // The duration of the fade animation
+    public TextMeshProUGUI text; // The TextMeshProUGUI component to fade
 
     public void EndFade()
     {

@@ -6,7 +6,7 @@ using TMPro;
 public class TriggerBase : MonoBehaviour
 {
     [Header("Required Settings")]
-    [SerializeField] ModeOfActivation activationMode = ModeOfActivation.OnEnter; // Determines when functions are called
+    public ModeOfActivation activationMode = ModeOfActivation.OnEnter; // Determines when functions are called
 
     [Header("OPTIONAL: Target Selectivity Options")]
     [SerializeField] bool onlyTargetColWithTag = true; // Only target colliders with the tagToTarget tag when enabled, ignoring everything else.
