@@ -8,6 +8,7 @@ public class DropObjectField : TriggerBase, PowerableElement
     [SerializeField] bool blocksPlayer;
     [SerializeField] Behavior behavior;
     [SerializeField] bool swapBehaviorOnPowered;
+    [SerializeField] float dronePushbackForce = 30f;
 
     [Header("References")]
     [SerializeField] GrabberObject gObj;
@@ -55,7 +56,7 @@ public class DropObjectField : TriggerBase, PowerableElement
             audioSource.volume = volume;
             audioSource.Play();
             Rigidbody2D droneRB = activeCharacterManager.drone.GetComponent<Rigidbody2D>();
-            droneRB.AddForce(-droneRB.velocity.normalized * 30f, ForceMode2D.Impulse);
+            droneRB.AddForce(-droneRB.velocity.normalized * dronePushbackForce, ForceMode2D.Impulse);
         }
     }
 
