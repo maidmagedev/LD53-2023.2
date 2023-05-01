@@ -34,7 +34,6 @@ public class FoodPowerSource : PowerSource
             return;
         }
         if (other.CompareTag("Projectiles")) {
-            Debug.Log("Yeah!!!!");
             currentCount++;
             StopAllCoroutines();
             StartCoroutine(FillAmountLerp());

@@ -9,11 +9,14 @@ public class PowerableGate : MonoBehaviour, PowerableElement
     [Header("Gate Settings")]
     [SerializeField] Behavior behavior;
     [SerializeField] private Vector3 endPosition;
+    private bool activatedBefore;
 
     [Header("settings: moveTowards")]
     [SerializeField] private float movementSpeed = 2f;
     private bool movingForward = true;
     [Header("settings: lerpTo")]
+    [SerializeField] bool activateOnce; // only does something for the lerp.
+
     [SerializeField] float duration;
 
     [Header("References")]
@@ -49,6 +52,10 @@ public class PowerableGate : MonoBehaviour, PowerableElement
 
     public void StartPowered()
     {
+        if (activateOnce && activatedBefore) {
+            return;
+        }
+        activatedBefore = true;
         if (behavior == Behavior.moveTowards) {
             if (transform.position == startPosition)
             {
