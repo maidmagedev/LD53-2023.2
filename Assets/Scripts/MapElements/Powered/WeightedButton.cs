@@ -29,7 +29,7 @@ public class WeightedButton : PowerSource
     }
 
     void OnCollisionExit2D(Collision2D collision) {
-        StopCoroutine("Tether");
+        StopAllCoroutines();
         StartCoroutine(Tether());
     }
 
@@ -70,7 +70,7 @@ public class WeightedButton : PowerSource
             if (Vector3.Distance(weight.transform.position, this.transform.position) > maxDistance) {
                 weight = null;
                 isPowered = false;
-                StopCoroutine("MovePlatform");
+                //StopCoroutine("MovePlatform");
                 StartCoroutine(MovePlatform(transform.localPosition, Vector3.zero));
 
                 foreach (PowerableElement pElem in powerableElements) {
