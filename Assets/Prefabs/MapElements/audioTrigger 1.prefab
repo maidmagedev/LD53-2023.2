@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3991265955646469232}
   - component: {fileID: 6256004157801027243}
   - component: {fileID: 521224359734611738}
+  - component: {fileID: 5173598829045303182}
   m_Layer: 0
   m_Name: audioTrigger 1
   m_TagString: Untagged
@@ -107,9 +108,11 @@ MonoBehaviour:
   promptTextMesh: {fileID: 0}
   textFade: {fileID: 0}
   audioSource: {fileID: 6256004157801027243}
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 4182780385ebc8f45bb43f875cd8edaf, type: 3}
   activeClipIndex: 0
   volume: 4
+  activateOnce: 1
 --- !u!82 &6256004157801027243
 AudioSource:
   m_ObjectHideFlags: 0
@@ -232,3 +235,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5173598829045303182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856417589630354896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6541edecf74e47e42a9b11c9fd45e542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

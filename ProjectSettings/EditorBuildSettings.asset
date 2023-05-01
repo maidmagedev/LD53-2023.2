@@ -6,12 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prefabs/Scenes/JosephScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Levels/Main Menu.unity
+    guid: c3392a3fc0aaab349944af8387f438ac
   - enabled: 1
-    path: Assets/Scenes/Levels/DropGate.unity
-    guid: 8097a51ffd1d92b4b94299a27a7659e4
+    path: Assets/Scenes/Levels/IntroLevel.unity
+    guid: 34e8b30820708df4d988c9ac7761fc61
+  - enabled: 1
+    path: Assets/Scenes/Levels/CarryGap.unity
+    guid: 8d1e52db01c43a94dbee9664db094a3a
   - enabled: 1
     path: Assets/Scenes/Levels/GuardLevel1.unity
     guid: e7beeb070ae944d4183d0305e0af280f
+  - enabled: 1
+    path: Assets/Scenes/Levels/GuardLevel2.unity
+    guid: 6bf3a946f320dde40877c4e8f0db43b7
+  - enabled: 1
+    path: Assets/Scenes/Levels/BarrierDrop.unity
+    guid: 70ba4437ad7d6cf4fa15501ab10e31dc
+  - enabled: 1
+    path: Assets/Scenes/Levels/MomentumLevel.unity
+    guid: 0cdd2dcd181b37c4880c895d9a7396bb
+  - enabled: 1
+    path: Assets/Scenes/Levels/FlyingLevel.unity
+    guid: fc3e3879243ba2f4c9f1340ea615218c
   m_configObjects: {}
