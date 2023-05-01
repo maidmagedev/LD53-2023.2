@@ -34,7 +34,11 @@ public class Projectile : MonoBehaviour
         // this below bit happens once even though it's in update.
         if (!thrown && sender != null) {
             //rb.AddForce(sender.transform.forward * 400f);
-            rb.velocity = new Vector3(velocity.x * sender.transform.localScale.x, velocity.y + 10f, velocity.z);
+            int flip = 1;
+            if (ShouldIShootLeft()) {
+                flip = -1;
+            }
+            rb.velocity = new Vector3(velocity.x * flip, velocity.y + 10f, velocity.z);
             
             thrown = true;
         }
@@ -134,5 +138,29 @@ public class Projectile : MonoBehaviour
         projectileRoot.transform.localScale = endScale;
 
         yield return null;
+    }
+
+
+    private bool ShouldIShootLeft()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePosition - transform.position;
+        float angle = Vector2.SignedAngle(Vector2.right, direction);
+        //print("angle: " + angle);
+
+        // uncomment this to rotate sprite based off mouse position
+        //transform.eulerAngles = new Vector3(0, 0, angle);
+
+        if (Mathf.Abs(angle) > 100)
+        {
+            // facing left
+            return true;
+            //print("facing left");
+        }
+        else if (Mathf.Abs(angle) > - 100) // was < 40
+        {
+            return false;
+        }
+        return false;
     }
 }

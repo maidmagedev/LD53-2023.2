@@ -50,7 +50,8 @@ public class PlatformingMovementComponent : MonoBehaviour
             rb.velocity = Vector2.zero;
             return;
         }
-        FlipSprite();
+        //FlipSprite();
+        RotateSprite();
         Jump();
     }
 
@@ -121,5 +122,31 @@ public class PlatformingMovementComponent : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         PlayerDead = true;
+    }
+
+    private void RotateSprite()
+    {
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePosition - transform.position;
+        float angle = Vector2.SignedAngle(Vector2.right, direction);
+        //print("angle: " + angle);
+
+        // uncomment this to rotate sprite based off mouse position
+        //transform.eulerAngles = new Vector3(0, 0, angle);
+
+        if (Mathf.Abs(angle) > 100)
+        {
+            // facing left
+            gameObject.transform.localScale = new Vector2(-1f, gameObject.transform.localScale.y);
+            //print("facing left");
+        }
+        else if (Mathf.Abs(angle) > - 100) // was < 40
+        {
+            // facing right
+            gameObject.transform.localScale = new Vector2(1f, gameObject.transform.localScale.y);
+            //print("facing right");
+        }
+
     }
 }

@@ -43,7 +43,8 @@ public class TopDownMovementComponent : MonoBehaviour
             horizontalInput *= moveLimiter;
             verticalInput *= moveLimiter;
         }
-        FlipSprite();
+        //FlipSprite();
+        RotateSprite();
         //move();
     }
 
@@ -71,22 +72,27 @@ public class TopDownMovementComponent : MonoBehaviour
     }
 
 
-    // Rotates the sprite based off mouse position--currently flips left or right only
     private void RotateSprite()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePosition - transform.position;
         float angle = Vector2.SignedAngle(Vector2.right, direction);
-        transform.eulerAngles = new Vector3(0, 0, angle);
-        if (Mathf.Abs(angle) > 150)
+        //print("angle: " + angle);
+
+        // uncomment this to rotate sprite based off mouse position
+        //transform.eulerAngles = new Vector3(0, 0, angle);
+
+        if (Mathf.Abs(angle) > 100)
         {
             // facing left
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, -1f);
+            gameObject.transform.localScale = new Vector2(-1f, gameObject.transform.localScale.y);
+            //print("facing left");
         }
-        else if (Mathf.Abs(angle) < 40)
+        else if (Mathf.Abs(angle) > - 100) // was < 40
         {
             // facing right
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, 1f);
+            gameObject.transform.localScale = new Vector2(1f, gameObject.transform.localScale.y);
+            //print("facing right");
         }
 
     }
