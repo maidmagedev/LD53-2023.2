@@ -23,7 +23,9 @@ public class FoodPowerSource : PowerSource
         if (currentCount >= maxCount) {
             foreach (PowerableElement pElem in powerableElements) {
                 pElem.StartPowered();
+
             }
+            isPowered = true;
         }
     }
 
