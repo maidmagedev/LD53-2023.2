@@ -50,6 +50,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 0a94aa60f88b8a94c9201bfbb639e389, type: 3}
   - {fileID: 21300000, guid: 3e5682b073c10d84a83157f541c24c76, type: 3}
   - {fileID: -1075318849, guid: 75c101c0c8c6d6f45abd37142798b219, type: 3}
   - {fileID: -1996957878, guid: 75c101c0c8c6d6f45abd37142798b219, type: 3}
@@ -121,6 +122,7 @@ SpriteAtlas:
   - {fileID: 1771247253, guid: 898ee8c5c5d95a64aaf8100b7c67bbf6, type: 3}
   - {fileID: -659030999, guid: 898ee8c5c5d95a64aaf8100b7c67bbf6, type: 3}
   - {fileID: -1280093168, guid: 898ee8c5c5d95a64aaf8100b7c67bbf6, type: 3}
+  - {fileID: 21300000, guid: 9f502b76348547d4fbc11cc68c89db75, type: 3}
   - {fileID: 21300000, guid: 5f8afe47f4a0e7f4783ab91e729bec09, type: 3}
   - {fileID: 706708531, guid: d658b0e705c5c9e419d865c5f01387b1, type: 3}
   - {fileID: -1263868620, guid: d658b0e705c5c9e419d865c5f01387b1, type: 3}
@@ -163,6 +165,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 74f907efbd6ef8b42bae9ac6277f5e2a, type: 3}
   - {fileID: 21300000, guid: 2d597eff34806c445aa963847ed0539c, type: 3}
   m_PackedSpriteNamesToIndex:
+  - foodpower
   - bundleofbeams
   - tile_dev_11
   - tile_dev_10
@@ -234,6 +237,7 @@ SpriteAtlas:
   - source_fridge_facial_7
   - source_fridge_facial_4
   - source_fridge_facial_5
+  - crate_food
   - fridge
   - gate_1
   - gate_0
