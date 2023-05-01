@@ -34,6 +34,13 @@ public class DropObjectField : TriggerBase, PowerableElement
     void Start() {
         audioSource.dopplerLevel = 0f;
         SetupBlocker();
+        if (behavior == Behavior.droneOnly) {
+            spriteRenderer.color = new Color32(0x00, 0xDD, 0xFF, 0x77);
+
+
+        } else if (behavior == Behavior.blockDrone) {
+            spriteRenderer.color = new Color32(0xFF, 0xA0, 0x00, 0x77);
+        }
     }
 
     void Update() {
