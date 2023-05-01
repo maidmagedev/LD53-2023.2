@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeightedButton : PowerSource
 {
     public GameObject weight;
-    public GameObject pElemSource; //Should have a pElem component.
 
 
     void Start () {
