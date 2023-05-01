@@ -6,11 +6,10 @@ public class WeightedButton : PowerSource
 {
     public GameObject weight;
     public GameObject pElemSource; //Should have a pElem component.
-    public PowerableElement pElem;
+
 
     void Start () {
-        pElem = pElemSource.GetComponentInChildren<PowerableElement>();
-        pElem.SetPowerSource(this);
+        SetupReferences();
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -22,7 +21,10 @@ public class WeightedButton : PowerSource
         StartCoroutine(MovePlatform(transform.localPosition, new Vector3(0, -0.25f, 0)));
         if (!isPowered) {
             isPowered = true;
-            pElem.StartPowered();
+
+            foreach (PowerableElement pElem in powerableElements) {
+                pElem.StartPowered();
+            }
         }
     }
 
@@ -70,7 +72,11 @@ public class WeightedButton : PowerSource
                 isPowered = false;
                 StopCoroutine("MovePlatform");
                 StartCoroutine(MovePlatform(transform.localPosition, Vector3.zero));
-                pElem.EndPowered();
+
+                foreach (PowerableElement pElem in powerableElements) {
+                    pElem.EndPowered();
+                }
+
                 yield break;
             }
             yield return null;
