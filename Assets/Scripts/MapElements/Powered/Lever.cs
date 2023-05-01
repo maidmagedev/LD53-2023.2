@@ -10,7 +10,7 @@ public class Lever : PowerSource
     [SerializeField] Position enabledPosition;
     private Position offPosition;
     [SerializeField] bool isBinary;
-    [SerializeField] bool activateOnce;
+    [SerializeField] bool stayPowered; // Cannot be disabled.
     private bool neutralEnabled;
     [SerializeField] float angleZ_posA;
     [SerializeField] float angleZ_posB;
@@ -59,9 +59,7 @@ public class Lever : PowerSource
         //pElem = pElemSource.GetComponentInChildren<PowerableElement>();
         //pElem.SetPowerSource(this);
 
-        foreach (PowerableElement pE in powerableElements) {
-            pE.SetPowerSource(this);
-        }
+        SetupReferences();
 
         originalPos = grabbable.root.transform.position;
         originalRot = grabbable.root.transform.rotation;
@@ -70,36 +68,46 @@ public class Lever : PowerSource
     // Update is called once per frame
     void Update()
     {
+        // Determine what state the lever is in.
         if (leverGrab.transform.position.x - main.transform.position.x > 0.45) {
-            // Debug.Log("B");
             pos = Position.b;
         } else if (leverGrab.transform.position.x - main.transform.position.x < -0.45) {
             pos = Position.a;
-            // Debug.Log("A");
 
-        } else {
-            // Debug.Log("C");
-
+        } else if (!isPowered) {
             pos = Position.center;
         }
+
+
+        // If we do not use the center position, set it insteead to PositionA.
         if (!neutralEnabled && pos == Position.center) {
             pos = Position.a;
         }
 
-        if (pos == enabledPosition) {
+        
+        if (pos == enabledPosition && !isPowered) {
+            // power Is activated here:
             isPowered = true;
+
             foreach (PowerableElement pElem in powerableElements) {
                 pElem.StartPowered();
             }
-        } else {
-            if (isPowered) {
-                foreach (PowerableElement pElem in powerableElements) {
-                    pElem.EndPowered();
-                }
-                isPowered = false;
+            if (stayPowered) {
+                Release(true);
+                leverGrab.SetActive(false);
             }
+
+        } else if (pos != enabledPosition && isPowered && !stayPowered) {
+            
+            // Stops getting powered
+            foreach (PowerableElement pElem in powerableElements) {
+                pElem.EndPowered();
+            }
+            isPowered = false;
+            
         }
 
+        // Lerp the lever arm towards the player's drone while we are grabbing the lever.
         if (grabber.isGrabbing && grabber.heldObject == leverGrab) {
             // Get the direction to the target
             StopAllCoroutines();
@@ -120,6 +128,7 @@ public class Lever : PowerSource
         
         } 
         
+        // IF the player is too far away from the lever arm, release the object from the player.
         if (Mathf.Abs(leverGrab.transform.position.x - main.transform.position.x) > 3 || Mathf.Abs(leverGrab.transform.position.y - main.transform.position.y) > 3) {
             Debug.Log("Forced Release");
             if (grabber.isReleaseReady) {
@@ -156,6 +165,7 @@ public class Lever : PowerSource
         //Debug.Log("end of switch from release");
     }
 
+    // Used to snap the lever to desired positions when the player has let go.
     IEnumerator RotateToQuaternion(Transform transform, Vector3 targetRotation, float duration)
     {
 

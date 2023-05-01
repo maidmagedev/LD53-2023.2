@@ -22,7 +22,6 @@ public class PowerableMonitor : MonoBehaviour, PowerableElement
 
     void PowerableElement.StartPowered()
     {
-        Debug.Log("Start");
         light2D.intensity = 3;
     }
 
