@@ -366,7 +366,7 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113374219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -50472,6 +50472,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 13.96
       objectReference: {fileID: 0}
+    - target: {fileID: 7895695828532565395, guid: 075130e06c73df348a8e5642d8a5c23d, type: 3}
+      propertyPath: activeCharacterManager
+      value: 
+      objectReference: {fileID: 1076849373}
     - target: {fileID: 7895695829125060634, guid: 075130e06c73df348a8e5642d8a5c23d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.43
@@ -50572,6 +50576,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7202334660190150627, guid: 1c34eba37118e3746a3f62eb19d69fac, type: 3}
   m_PrefabInstance: {fileID: 973208097}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1076849373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7939533438778866442, guid: 42532090f02ce55499910c9b8ea2b4f0, type: 3}
+  m_PrefabInstance: {fileID: 1430203551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8791c0a312539c94b9c5293b982f026e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1094939638
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -141067,6 +141082,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 14.02
       objectReference: {fileID: 0}
+    - target: {fileID: 7895695828532565395, guid: 075130e06c73df348a8e5642d8a5c23d, type: 3}
+      propertyPath: activeCharacterManager
+      value: 
+      objectReference: {fileID: 1076849373}
     - target: {fileID: 7895695829125060634, guid: 075130e06c73df348a8e5642d8a5c23d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.43
@@ -141432,7 +141451,7 @@ MonoBehaviour:
   targetSpeed: 2
   isPatrolling: 1
   waypoints: []
-  activeCharacterManager: {fileID: 0}
+  activeCharacterManager: {fileID: 1076849373}
   detectionCone: {fileID: 2058019384}
   damageLight: {fileID: 7895695827506062490}
   sightHolder: {fileID: 9114374513198824000}
