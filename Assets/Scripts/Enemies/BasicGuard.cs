@@ -122,10 +122,12 @@ public class BasicGuard : MonoBehaviour, IKillable
         if (rb.velocity.x < 0)
         {
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            sightHolder.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         }
         else if (rb.velocity.x > 0)
         {
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x)*-1, transform.localScale.y);
+            sightHolder.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
     }
     
