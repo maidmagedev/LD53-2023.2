@@ -340,11 +340,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1283048860763159512, guid: 42532090f02ce55499910c9b8ea2b4f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.63
+      value: 30.29
       objectReference: {fileID: 0}
     - target: {fileID: 1283048860763159512, guid: 42532090f02ce55499910c9b8ea2b4f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.29
+      value: -2.41
       objectReference: {fileID: 0}
     - target: {fileID: 1884923624392467152, guid: 42532090f02ce55499910c9b8ea2b4f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -796,7 +796,7 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203123071}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -83847,7 +83847,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2152769883338776720, guid: a5658eae70ee91d45af7658fa266b004, type: 3}
       propertyPath: powerableElementSources.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2152769883338776720, guid: a5658eae70ee91d45af7658fa266b004, type: 3}
       propertyPath: powerableElementSources.Array.data[0]
