@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.8
-  damageAmount: 20
+  damageAmount: 1000
   destroyOnContact: 0
   destroyOnGround: 1
   onlyTargetObjectsWithTag: Player
