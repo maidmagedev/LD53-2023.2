@@ -41,6 +41,9 @@ public class BasicGuard : MonoBehaviour, IKillable
         rb = GetComponent<Rigidbody2D>();
         damageableComponent = this.gameObject.AddComponent<DamageableComponent>();
         damageableComponent.SetMaxHealth(maxHealth);
+        if (activeCharacterManager == null) {
+            activeCharacterManager = FindObjectOfType<ActiveCharacterManager>();
+        }
         speed = targetSpeed;
     }
 
