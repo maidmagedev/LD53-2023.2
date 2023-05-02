@@ -106,6 +106,7 @@ SpriteAtlas:
   - {fileID: 262068991, guid: f86e761584ce0394f8b46205dc403560, type: 3}
   - {fileID: 490938569, guid: f86e761584ce0394f8b46205dc403560, type: 3}
   - {fileID: -1323649901, guid: f86e761584ce0394f8b46205dc403560, type: 3}
+  - {fileID: 21300000, guid: e93b725578d3a6742a9e5683d6911082, type: 3}
   - {fileID: 21300000, guid: f146beb5e657a2241869e83afd4b3663, type: 3}
   - {fileID: -62954869, guid: 898ee8c5c5d95a64aaf8100b7c67bbf6, type: 3}
   - {fileID: 1255314636, guid: 898ee8c5c5d95a64aaf8100b7c67bbf6, type: 3}
@@ -159,7 +160,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 853f6d7a7fd068745af7c5021bb0b2ca, type: 3}
   - {fileID: 21300000, guid: 1869b79a5fa90bb48aad85b4e26f29b0, type: 3}
   - {fileID: 21300000, guid: c397c5ca79780a24a8dd0419bb405129, type: 3}
+  - {fileID: 21300000, guid: 92eac39b080de8f40a40b90f7fcd9919, type: 3}
   - {fileID: 21300000, guid: ae0ff51c76c4010428f47b27b30a46da, type: 3}
+  - {fileID: 21300000, guid: 11f6762de33709644a0677012509e9a1, type: 3}
   - {fileID: 21300000, guid: 6141cf9e7b95d0243a71281bf4fa00c2, type: 3}
   - {fileID: 21300000, guid: 4bba52beae945d749890068393ceeb03, type: 3}
   - {fileID: 21300000, guid: 317c0a4f75447de4eb779789244803dd, type: 3}
@@ -222,6 +225,7 @@ SpriteAtlas:
   - drone_idle_2
   - drone_idle_5
   - drone_idle_4
+  - thumbnailfinal_png
   - teleporter1
   - source_fridge_facial_11
   - source_fridge_facial_10
@@ -275,7 +279,9 @@ SpriteAtlas:
   - monitorB
   - light_frame
   - monitorA_w
+  - thumbnailfinal_png
   - monitorA_frame
+  - thumbnail
   - crate
   - monitorB_frame
   - teleporter2
