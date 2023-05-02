@@ -6850,6 +6850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 7895695827545574349, guid: 075130e06c73df348a8e5642d8a5c23d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.18
+      objectReference: {fileID: 0}
     - target: {fileID: 7895695828532565395, guid: 075130e06c73df348a8e5642d8a5c23d, type: 3}
       propertyPath: activeCharacterManager
       value: 
