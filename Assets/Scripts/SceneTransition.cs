@@ -30,6 +30,11 @@ public class SceneTransition : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
             case Behavior.loadNext:
+                if (SceneManager.GetActiveScene().buildIndex == 8)
+                {
+                    SceneManager.LoadScene(0);
+                    return;
+                }
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }
