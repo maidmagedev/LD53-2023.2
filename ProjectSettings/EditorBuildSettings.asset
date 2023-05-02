@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/GuardLevel2.unity
     guid: 6bf3a946f320dde40877c4e8f0db43b7
   - enabled: 1
+    path: Assets/Scenes/Levels/TrappedDroneLevel.unity
+    guid: ff22dd41477220a4599e8942e2d2b49b
+  - enabled: 1
     path: Assets/Scenes/Levels/BarrierDrop.unity
     guid: 70ba4437ad7d6cf4fa15501ab10e31dc
   - enabled: 1
